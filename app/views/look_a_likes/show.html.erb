@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @look_a_like.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @look_a_like.last_name %>
+</p>
+
+<%= link_to 'Edit', edit_look_a_like_path(@look_a_like) %> |
+<%= link_to 'Back', look_a_likes_path %>

@@ -1,0 +1,2 @@
+class LookALike < ApplicationRecord
+end
