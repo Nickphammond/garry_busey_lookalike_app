@@ -1,0 +1,32 @@
+
+
+<% if current_user %>
+    <ul>
+        <li>
+            <%= link_to "logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <%= link_to "my events", user_events_path, class: "nav-link" %>
+        </li>
+    </ul>
+<% else %>
+    <ul>
+        <li>
+            <%= link_to "login", new_user_session_path, class: "nav-link" %>
+        </li>
+
+        <li>
+            <%= link_to "register", new_user_registration_path, class: "nav-link" %>
+        </li>
+
+    </ul>
+<% end %>
+
+<ul>
+    <li>
+        <%= link_to "events", events_path, class: "nav-link" %>
+    </li>
+</ul>

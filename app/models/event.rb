@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
-    has_many :events_users
-    has_many :users, through: :events_users
+
+    belongs_to :address
+
+    belongs_to :user
 
     has_many :events_look_a_likes
     has_many :look_a_likes, through: :events_look_a_likes

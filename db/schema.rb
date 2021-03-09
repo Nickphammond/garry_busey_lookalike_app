@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_134438) do
+ActiveRecord::Schema.define(version: 2021_03_09_114332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2021_03_07_134438) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id"
+    t.bigint "user_id"
     t.index ["address_id"], name: "index_events_on_address_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "events_look_a_likes", force: :cascade do |t|
@@ -45,15 +47,6 @@ ActiveRecord::Schema.define(version: 2021_03_07_134438) do
     t.index ["event_id"], name: "index_events_look_a_likes_on_event_id"
     t.index ["look_a_like_id"], name: "index_events_look_a_likes_on_look_a_like_id"
     t.index ["movie_id"], name: "index_events_look_a_likes_on_movie_id"
-  end
-
-  create_table "events_users", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_events_users_on_event_id"
-    t.index ["user_id"], name: "index_events_users_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -108,11 +101,10 @@ ActiveRecord::Schema.define(version: 2021_03_07_134438) do
 
   add_foreign_key "addresses", "suburbs"
   add_foreign_key "events", "addresses"
+  add_foreign_key "events", "users"
   add_foreign_key "events_look_a_likes", "events"
   add_foreign_key "events_look_a_likes", "look_a_likes"
   add_foreign_key "events_look_a_likes", "movies"
-  add_foreign_key "events_users", "events"
-  add_foreign_key "events_users", "users"
   add_foreign_key "suburbs_areas", "look_a_likes"
   add_foreign_key "suburbs_areas", "suburbs"
 end

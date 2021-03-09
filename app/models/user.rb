@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :events_users
-  has_many :events, through: :events_users
+
+  belongs_to :address
+
+  belongs_to :look_a_like
+
+  has_many :events
+  
 end
