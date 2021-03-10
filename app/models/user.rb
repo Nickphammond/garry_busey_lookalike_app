@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  belongs_to :address
+  belongs_to :address, optional: true
 
-  belongs_to :look_a_like
+  belongs_to :look_a_like, optional: true
 
   has_many :events
   

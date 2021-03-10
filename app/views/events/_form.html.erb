@@ -1,4 +1,4 @@
-<%= form_with(model: event, local: true) do |form| %>
+<%= form_with(model: @event, local: true) do |event_form| %>
   <% if event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -12,16 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= event_form.label :date %>
+    <%= event_form.date_select :date %>
   </div>
 
   <div class="field">
-    <%= form.label :time %>
-    <%= form.time_select :time %>
+    <%= event_form.label :time %>
+    <%= event_form.time_select :time %>
   </div>
 
+  <%= event_form.fields_for :address do |address_form| %>
+  <div class="field">
+    <%= address_form.label :street_number %>
+    <%= address_form.text_field :street_number %>
+    <%= address_form.label :street_name %>
+    <%= address_form.text_field :street_name %>
+
+    <%= address_form.fields_for :suburb do |suburb_form| %>
+      <%= suburb_form.label :name %>
+      <%= suburb_form.text_field :name %>
+      <%= suburb_form.label :postcode %>
+      <%= suburb_form.text_field :postcode %>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= event_form.submit %>
   </div>
 <% end %>

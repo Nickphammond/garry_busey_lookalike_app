@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_events
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
+
 
   # GET /events or /events.json
   def index
@@ -14,7 +16,22 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @event.user_id = current_user.id
+    @event.build_address
+    @event.build_address.build_suburb
+
   end
+
+  # def create
+  #   @event = Event.new(event_params)
+  #   @event.user_id = current_user.id
+  #   if @event.save
+  #     redirect_to event_path(@event)
+  #   else
+  #     render :new
+  #   end
+  # end
+
 
   # GET /events/1/edit
   def edit
@@ -23,6 +40,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+    @event.user_id = current_user.id
 
     respond_to do |format|
       if @event.save
@@ -68,8 +86,13 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_events
+      @events = Event.all
+    end
+
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :time)
+      params.require(:event).permit(:date, :time, :user_id, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
     end
+
 end
