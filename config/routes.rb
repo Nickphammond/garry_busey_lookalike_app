@@ -7,14 +7,24 @@ Rails.application.routes.draw do
 
   get "/", to: "pages#home", as: :root
 
+
   get "/profile", to: "users#user_profile", as: "user_profile"
 
-  post "/profile", to: "users#update"
-  patch "/profile", to: "users#update"
-  put  "/profile", to: "users#update"
-  get "/profile/edit", to: "users#edit", as: "edit_profile"
+  get "/profile/info", to: "users#user_profile_info", as: "user_profile_info"
+  post "/profile/info", to: "users#update"
+  patch "/profile/info", to: "users#update"
+  put  "/profile/info", to: "users#update"
+  get "/profile/info/edit", to: "users#edit_profile_info", as: "edit_profile_info"
+
+  get "/profile/lookalike", to: "users#user_profile_lookalike", as: "user_profile_lookalike"
+  post "/profile/lookalike", to: "users#update"
+  patch "/profile/lookalike", to: "users#update"
+  put  "/profile/lookalike", to: "users#update"
+  get "/profile/lookalike/edit", to: "users#edit_lookalike", as: "edit_profile_lookalike"
+
 
   get "/lookalikes", to: "look_a_likes#index"
+
 
   get "/user_events", to: "events#user_events", as: "user_events"
 end

@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :events
 
   accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :look_a_like
   
 end

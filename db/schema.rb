@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_020750) do
+ActiveRecord::Schema.define(version: 2021_03_11_120809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,10 +59,9 @@ ActiveRecord::Schema.define(version: 2021_03_11_020750) do
   end
 
   create_table "look_a_likes", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "bio"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -99,8 +98,10 @@ ActiveRecord::Schema.define(version: 2021_03_11_020750) do
     t.string "first_name"
     t.string "last_name"
     t.bigint "address_id"
+    t.bigint "look_a_like_id"
     t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["look_a_like_id"], name: "index_users_on_look_a_like_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -113,4 +114,5 @@ ActiveRecord::Schema.define(version: 2021_03_11_020750) do
   add_foreign_key "suburbs_areas", "look_a_likes"
   add_foreign_key "suburbs_areas", "suburbs"
   add_foreign_key "users", "addresses"
+  add_foreign_key "users", "look_a_likes"
 end
