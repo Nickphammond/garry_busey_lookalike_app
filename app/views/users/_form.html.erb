@@ -1,15 +1,5 @@
 <%= form_with(model: @user, local: true) do |user_form| %>
-    <% if user.errors.any? %>
-      <div id="user_explanation">
-        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user profile information from being saved:</h2>
-  
-        <ul>
-          <% usererrors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+
   
     <div class="field">
         <%= user_form.label :first_name %>
