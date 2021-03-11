@@ -1,3 +1,50 @@
-<%= form_with(model: @user, local: true) do |form| %>
-
-<% end %>
+<%= form_with(model: @user, local: true) do |user_form| %>
+    <% if user.errors.any? %>
+      <div id="user_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user profile information from being saved:</h2>
+  
+        <ul>
+          <% usererrors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+        <%= user_form.label :first_name %>
+        <%= user_form.text_field :first_name %>
+    </div>
+  
+    <div class="field">
+        <%= user_form.label :last_name %>
+        <%= user_form.text_field :last_name %>
+    </div>
+  
+    <%= user_form.fields_for :address do |address_form| %>
+    <div class="field">
+      <%= address_form.label :street_number %>
+      <%= address_form.text_field :street_number %>
+      <%= address_form.label :street_name %>
+      <%= address_form.text_field :street_name %>
+  
+      <%= address_form.fields_for :suburb do |suburb_form| %>
+        <%= suburb_form.label :name %>
+        <%= suburb_form.text_field :name %>
+        <%= suburb_form.label :postcode %>
+        <%= suburb_form.text_field :postcode %>
+      <% end %>
+    </div>
+    <% end %>
+  
+    <div class="field">
+      <%= user_form.label :listed %>
+      <%= user_form.check_box :listed %>
+    </div>
+  
+  </div>
+  
+    <div class="actions">
+      <%= user_form.submit %>
+    </div>
+  <% end %>

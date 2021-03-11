@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   get "/", to: "pages#home", as: :root
 
-  get "/profile", to: "users#user_profile", as: "user"
+  get "/profile", to: "users#user_profile", as: "user_profile"
+  get "/profile/edit", to: "users#edit", as: "edit_profile"
 
   get "/lookalikes", to: "look_a_likes#index"
 

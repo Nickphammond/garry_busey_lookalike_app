@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     def user_profile
     end
 
+    def edit
+    end
+
     private
 
     def set_user
