@@ -1,0 +1,29 @@
+<h1>My Details</h1>
+
+<h2>Last Name</h2>
+<% if (current_user.first_name) != nil %>
+    <p><%= current_user.first_name %></p>
+<% else %>
+    <p>You have not given a first name</p>
+<% end %>
+
+<h2>Last Name</h2>
+<% if (current_user.last_name) != nil %>
+    <p><%= current_user.last_name %></p>
+<% else %>
+    <p>You have not given a last name </p>
+<% end %>
+
+<h2>Address</h2>
+<% if (current_user.address) != nil %>
+    <p><%= current_user.address.street_number %></p>
+    <p><%= current_user.address.street_name %></p>
+    <p><%= current_user.address.suburb.name %></p>
+    <p><%= current_user.address.suburb.postcode %></p>
+
+
+<% else %>
+    <p>You have not given an address</p>
+<% end %>
+
+<%= link_to "edit profile", edit_profile_path(current_user) %>

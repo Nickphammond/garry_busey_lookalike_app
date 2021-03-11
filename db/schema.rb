@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_001835) do
+ActiveRecord::Schema.define(version: 2021_03_11_020750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2021_03_11_001835) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -110,4 +112,5 @@ ActiveRecord::Schema.define(version: 2021_03_11_001835) do
   add_foreign_key "events_look_a_likes", "movies"
   add_foreign_key "suburbs_areas", "look_a_likes"
   add_foreign_key "suburbs_areas", "suburbs"
+  add_foreign_key "users", "addresses"
 end

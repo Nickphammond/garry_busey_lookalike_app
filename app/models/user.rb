@@ -6,9 +6,10 @@ class User < ApplicationRecord
 
 
   belongs_to :address, optional: true
-
   belongs_to :look_a_like, optional: true
 
   has_many :events
+
+  accepts_nested_attributes_for :address
   
 end

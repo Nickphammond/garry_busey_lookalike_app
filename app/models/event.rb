@@ -1,7 +1,6 @@
 class Event < ApplicationRecord
 
     belongs_to :address
-
     belongs_to :user
 
     has_many :events_look_a_likes

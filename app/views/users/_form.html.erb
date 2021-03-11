@@ -11,14 +11,14 @@
         <%= user_form.text_field :last_name %>
     </div>
   
-    <%= user_form.fields_for :address do |address_form| %>
+    <%= user_form.fields_for :address, Address.new do |address_form| %>
     <div class="field">
       <%= address_form.label :street_number %>
       <%= address_form.text_field :street_number %>
       <%= address_form.label :street_name %>
       <%= address_form.text_field :street_name %>
   
-      <%= address_form.fields_for :suburb do |suburb_form| %>
+      <%= address_form.fields_for :suburb, Suburb.new do |suburb_form| %>
         <%= suburb_form.label :name %>
         <%= suburb_form.text_field :name %>
         <%= suburb_form.label :postcode %>
@@ -26,11 +26,6 @@
       <% end %>
     </div>
     <% end %>
-  
-    <div class="field">
-      <%= user_form.label :listed %>
-      <%= user_form.check_box :listed %>
-    </div>
   
   </div>
   
