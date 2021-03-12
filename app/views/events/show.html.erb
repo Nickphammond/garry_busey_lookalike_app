@@ -10,5 +10,112 @@
   <%= @event.time %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<p>
+  <strong>Address:</strong>
+  <%= @event.address.street_number + ' ' + @event.address.street_name + ' ' + @event.address.suburb.name + ' ' + @event.address.suburb.postcode.to_s %>
+</p>
+
+
+
+
+<% if @event.user != current_user &&  %>
+
+  <% if current_user.look_a_like != nil %>
+
+    <% if @event.look_a_likes.include?(current_user.look_a_like)%>
+
+      <% userll = current_user.look_a_like.events_look_a_likes %>
+      <% ans = userll[0] %>
+      <% for item in userll %>
+        <% if item.event == @event %>
+          <% ans = item %>
+        <% end %>
+      <% end %>
+      
+      <% if ans.host_accepted == true%>
+
+        <p> The host has accepted your expression of interest <p>
+
+        <p>Would you like to confirm your interest?<p>
+
+        <%= form_with(model: @event.events_look_a_likes.intersection(current_user.events_look_a_likes)[0], local: true) do |eventlal_form| %>
+
+        
+          <div class="field">
+            <%= eventlal_form.hidden_field :look_a_like_accepted, value: true %>  
+          </div>
+          
+
+
+          <div class="actions">
+            <%= eventlal_form.submit %>
+          </div>
+
+        <% end %>
+
+      <% else %>
+
+        <p> You have sent expression of interest </p>
+
+      <% end %>
+
+    <% else %>
+
+      <p>You can send an expression of interest<p>
+
+      <%= form_with(model: @event, local: true) do |event_form| %>
+
+      
+        <div class="field">
+          <%= event_form.hidden_field :look_a_likes, value: @event.look_a_likes.append(current_user.look_a_like) %>  
+        </div>
+        
+
+
+        <div class="actions">
+          <%= event_form.submit %>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+  <% else %>
+  <% end %>
+
+<% else %>
+
+  <p>This is one of your events </p>
+
+
+    <% @event.look_a_likes.each do |look_a_like| %> 
+  
+        <tr>
+          <td><%= look_a_like.user.first_name %></td>
+          <td><%= look_a_like.user.last_name %></td>
+          <td><%= link_to 'Show', look_a_like %></td>
+        </tr>
+
+    <% end %>
+
+
+
+
+    <% @event.events_look_a_likes.each do |events_look_a_like| %> 
+      <% if events_look_a_like.look_a_like_accepted == true %>
+        <tr>
+          <td><%= events_look_a_like.look_a_like.user.first_name %></td>
+          <td><%= events_look_a_like.look_a_like.user.last_name %></td>
+          <td><%= link_to 'Show', events_look_a_like.look_a_like %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+
+  <br>
+  <br>
+  <%= link_to 'Edit', edit_event_path(@event) %> 
+
+<% end %>
+
 <%= link_to 'Back', events_path %>

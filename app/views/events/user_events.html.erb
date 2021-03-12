@@ -13,7 +13,7 @@
 
   <tbody>
     <% @events.each do |event| %>
-        <% if event.user == (current_user) %>
+        <% if user_signed_in? && event.user == (current_user) %>
             <tr>
                 <td><%= event.date %></td>
                 <td><%= event.time %></td>

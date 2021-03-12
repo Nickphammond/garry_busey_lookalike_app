@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_120809) do
+ActiveRecord::Schema.define(version: 2021_03_12_004908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_120809) do
   create_table "events_look_a_likes", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "look_a_like_id", null: false
-    t.bigint "movie_id", null: false
+    t.bigint "movie_id"
     t.boolean "look_a_like_accepted"
     t.boolean "host_accepted"
     t.boolean "invite"

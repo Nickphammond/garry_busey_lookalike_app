@@ -14,11 +14,9 @@
   <tbody>
     <% @look_a_likes.each do |look_a_like| %>
       <tr>
-        <td><%= look_a_like.first_name %></td>
-        <td><%= look_a_like.last_name %></td>
+        <td><%= look_a_like.user.first_name %></td>
+        <td><%= look_a_like.user.last_name %></td>
         <td><%= link_to 'Show', look_a_like %></td>
-        <td><%= link_to 'Edit', edit_look_a_like_path(look_a_like) %></td>
-        <td><%= link_to 'Destroy', look_a_like, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

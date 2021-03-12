@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :look_a_likes
   resources :events
+  resources :events_look_a_likes
   resources :users
   devise_for :users,  path: "", path_names: {sign_in: "login", sign_out: "logout", sign_up: "register"}
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

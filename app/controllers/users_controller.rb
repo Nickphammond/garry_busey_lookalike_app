@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:user_profile, :user_profile_info, :edit_profile_info, :user_profile_lookalike, :edit_profile_lookalike, :update, :update_lookalike]
+    before_action :set_events, only: [:user_profile_lookalike]
     before_action :authenticate_user!
 
     def user_profile
@@ -45,6 +46,10 @@ class UsersController < ApplicationController
 
     def set_user
         @user = current_user
+    end
+
+    def set_events
+        @events = Event.all
     end
 
     def user_params

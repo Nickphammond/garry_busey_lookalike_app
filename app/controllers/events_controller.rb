@@ -92,7 +92,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :time, :user_id, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
+      params.require(:event).permit(:date, :time, :user_id, :listed, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], events_look_a_likes_attributes: [:look_a_like_accepted])
     end
 
 end
