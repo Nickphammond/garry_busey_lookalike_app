@@ -1,5 +1,17 @@
 <h1>My Details</h1>
 
+
+
+
+<% if current_user.image.attached? %>
+  <p>
+    <strong>Photo:</strong>
+    <%= image_tag @user.image %>
+  </p>
+<% end %>
+
+
+
 <h2>Last Name</h2>
 <% if (current_user.first_name) != nil %>
     <p><%= current_user.first_name %></p>
