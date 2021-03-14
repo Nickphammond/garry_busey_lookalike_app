@@ -29,12 +29,12 @@
 
 
 
-    <%= user_form.fields_for :address, Image.new do |image_form| %>
+  
     <div class="field">
-      <%= image_form.label :image %>
-      <%= image_form.file_field :image %>
+      <%= user_form.label :image %>
+      <%= user_form.file_field :image %>
     </div>
-    <% end %>
+ 
   
   </div>
   

@@ -27,6 +27,7 @@ class UsersController < ApplicationController
 
 
 
+
     def update
         @user.image.attach(params[:image])
         if @user.update(user_params)
