@@ -11,6 +11,13 @@
 </p>
 
 
+<% if @look_a_like.image.attached? %>
+  <p>
+    <strong>Photo:</strong>
+    <%= image_tag @look_a_like.image %>
+  </p>
+<% end %>
+
 
 
 <%= link_to 'Edit', edit_look_a_like_path(@look_a_like) %> |
