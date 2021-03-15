@@ -88,22 +88,20 @@
   <p>This is one of your events </p>
 
 
-    <% @event.look_a_likes.each do |look_a_like| %> 
-  
-        <tr>
-          <td><%= look_a_like.user.first_name %></td>
-          <td><%= look_a_like.user.last_name %></td>
-          <td><%= link_to 'Show', look_a_like %></td>
-        </tr>
-
-
-    <% end %>
-
-
-
 
     <% @event.events_look_a_likes.each do |events_look_a_like| %> 
+
+      <tr>
+        <td><%= events_look_a_like.event.user.first_name %></td>
+        <td><%= events_look_a_like.event.user.last_name %></td>
+        <td><%= link_to 'Show Look-a-Like', events_look_a_like %></td>
+        <td><%= link_to 'Go To Pay Look-a-Like', events_look_a_like_path(events_look_a_like) %></td>
+      </tr>
+
+
+    
       <% if events_look_a_like.look_a_like_accepted == true %>
+     
         <tr>
           <td><%= events_look_a_like.look_a_like.user.first_name %></td>
           <td><%= events_look_a_like.look_a_like.user.last_name %></td>

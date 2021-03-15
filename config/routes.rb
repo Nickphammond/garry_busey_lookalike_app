@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   get "/lookalikes", to: "look_a_likes#index"
 
+  get "/payments/success", to: "payments#success"
 
   get "/user_events", to: "events#user_events", as: "user_events"
 end

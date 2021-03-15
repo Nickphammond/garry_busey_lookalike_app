@@ -1,5 +1,6 @@
 class LookALikesController < ApplicationController
   before_action :set_look_a_like, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
 
   # GET /look_a_likes or /look_a_likes.json
   def index

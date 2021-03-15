@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Event Details</h1>
+
+<p>
+  <strong>Date:</strong>
+  <%= @events_look_a_like.event.date %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @events_look_a_like.event.time %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @events_look_a_like.event.address.street_number + ' ' + @events_look_a_like.event.address.street_name + ' ' + @events_look_a_like.event.address.suburb.name + ' ' + @events_look_a_like.event.address.suburb.postcode.to_s %>
+</p>
+
+
+
+<h1>LookALike Details</h1>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @events_look_a_like.look_a_like.user.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @events_look_a_like.look_a_like.user.last_name %>
+</p>
+
+<td><%= link_to "Go to Look-a-Like's page", @events_look_a_like.event %></td>
+
+
+
+
+<button class="buy-button p-3" data-stripe="payment">
+        <h4>Finalise Payment</h4>
+</button>
+
+        
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.querySelector("[data-stripe='payment']").addEventListener("click", () => {
+    const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>"
+    );
+
+    stripe.redirectToCheckout({
+        sessionId: "<%= @session_id %>"
+    });
+    });
+</script>
