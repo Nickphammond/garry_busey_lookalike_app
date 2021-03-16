@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'static/lookalikes_show'
   resources :look_a_likes
   resources :events
   resources :events_look_a_likes

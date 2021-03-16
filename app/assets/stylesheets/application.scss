@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+
+ /* tailwind */
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+
+input[type=text] {
+    border: 1.5px solid lightgrey;
+    border-radius: 0.25rem;
+    color: lightgrey;
+    width: 300px;
+}
+
+input:focus {
+    background-color: lightgreen;
+    color: grey;
+}

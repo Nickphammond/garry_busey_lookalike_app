@@ -1,12 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+
+<div class="bg-white rounded shadow border p-6 w-64">
+  <h5 class="text-3xl font-bold mb-4 mt-0">First name:</h5>
+  <p class="text-gray-700 text-sm"><%= @look_a_like.user.first_name %></p>
+</div>
+
+
+<p class="text-custom-yellow"> asfdsf</p>
+
+<div class="card" style="width: 18rem;">
+<p class="text-cyan-600">
   <strong>First name:</strong>
   <%= @look_a_like.user.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong class="text-amber">Last name:</strong>
   <%= @look_a_like.user.last_name %>
 </p>
 
@@ -17,6 +27,8 @@
     <%= image_tag @look_a_like.image %>
   </p>
 <% end %>
+
+</div>
 
 
 

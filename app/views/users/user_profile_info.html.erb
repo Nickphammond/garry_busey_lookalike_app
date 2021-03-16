@@ -1,12 +1,14 @@
 <h1>My Details</h1>
 
 
-
+<div class="justify-center">
 
 <% if current_user.image.attached? %>
   <p>
     <strong>Photo:</strong>
-    <%= image_tag @user.image %>
+    <div class="w-96">
+    <%= image_tag(@user.image) %>
+    </div>
   </p>
 <% end %>
 
@@ -39,3 +41,5 @@
 <% end %>
 
 <%= link_to "edit profile info", edit_profile_info_path(current_user) %>
+
+</div>
