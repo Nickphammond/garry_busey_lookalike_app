@@ -1,0 +1,22 @@
+
+
+<ul class="flex flex-row-reverse px-6 pt-6 pb-6 border-b-2 border-yellow-100 text-purple-300 font-mono">
+<% if current_user %>
+
+    <li class= "inline-block">
+        <%= link_to "logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+    </li>
+
+<% else %>
+
+    <li class= "inline-block">
+        <%= link_to "login", new_user_session_path, class: "nav-link" %>
+    </li>
+
+    <li class= "inline-block">
+        <%= link_to "register", new_user_registration_path, class: "nav-link" %>
+    </li>
+
+
+<% end %>
+</ul>

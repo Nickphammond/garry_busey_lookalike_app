@@ -9,8 +9,10 @@
     <%= stylesheet_pack_tag  'application',  media: 'all',  'data-turbolinks-track': 'reload'  %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header><%= render "layouts/navbar" %></header>
+  <header></header>
   <body>
+    <nav class="login"><%= render "layouts/login" %></nav>
+    <div class="sidenav"><%= render "layouts/navbar" %></div>
   
     <%= yield %>
   </body>

@@ -1,41 +1,31 @@
 
 
 
-<div class="mx-auto px-2 sm:px-5 flex-row">
-<ul>
+<div class="mx-auto px-2 sm:px-5 flex justify-center">
+<ul class="flex flex-col">
 <% if current_user %>
-    
-        <li class= "inline-block">
-            <%= link_to "logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
  
-        <li class= "inline-block">
+        <li class= "inline-block p-4">
             <%= link_to "my events", user_events_path, class: "nav-link" %>
         </li>
 
-        <li class= "inline-block">
+        <li class= "inline-block p-4">
             <%= link_to "my profile", user_profile_path, class: "nav-link" %>
         </li>
 
 <% else %>
 
-        <li class= "inline-block">
-            <%= link_to "login", new_user_session_path, class: "nav-link" %>
-        </li>
 
-        <li class= "inline-block">
-            <%= link_to "register", new_user_registration_path, class: "nav-link" %>
-        </li>
 
 
 <% end %>
 
 
-    <li class= "inline-block">
+    <li class= "inline-block p-4">
         <%= link_to "events", events_path, class: "nav-link" %>
     </li>
 
-    <li class= "inline-block">
+    <li class= "inline-block p-4">
         <%= link_to "look-a-likes", look_a_likes_path, class: "nav-link" %>
     </li>
 </ul>

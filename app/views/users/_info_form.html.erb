@@ -1,17 +1,22 @@
 <%= form_with(model: @user, local: true) do |user_form| %>
-  <div class="flex p-40 items-center font-sans overflow-hidden flex-col">
+  <div class="flex px-52 pt-44 items-center font-sans overflow-hidden flex-col">
 
     <% if current_user.image.attached? %>
-      <p>
-        <div class="w-96">
-        <%= image_tag(@user.image) %>
+   
+
+        <div class="round overflow-hidden rounded-lg shadow-lg flex justify-center">
+        <%= image_tag(@user.image, :class => "picture flex flex-wrap") %>
         </div>
-      </p>
+
     <% end %>
 
-    <div class="field">
-      <%= user_form.file_field :image %>
-    </div>
+
+    <label class="rounded-full py-3 px-6 bg-yellow-200 hover:bg-red-300">
+      Add image
+      <span style="display:none;">
+        <%= user_form.file_field :image, required: true, multiple: true, name: 'picture' %>
+      </span>
+    </label>
 
   
     <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
@@ -37,7 +42,7 @@
     
         <%= address_form.fields_for :suburb, Suburb.new do |suburb_form| %>
           <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
-          <%= suburb_form.label :name %>
+          <%= suburb_form.label "suburb" %>
           <%= suburb_form.text_field :name %>
           </div>
           <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
@@ -49,7 +54,7 @@
     <% end %>
  
   
-    <div class="actions">
+    <div class="actions flex justify-center pb-40 pt-20">
       <%= user_form.submit "Update" %>
     </div>
 
