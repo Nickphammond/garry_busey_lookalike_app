@@ -1,0 +1,137 @@
+<h1 class="flex justify-center">My LookALike Details</h1>
+
+<% if @user.look_a_like != nil %>
+
+    <p class="flex justify-center">You are an active look-a-like</p>
+
+
+    <div class="container box-content my-3">
+        <div class="overscroll-auto">
+
+            <h2>Invitations</h2>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div class="m-12">
+        <h2 class="flex justify-center">Requests</h2>
+        <div class="container box-content border-4 my-3">
+            
+            <div class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center overscroll-auto font-sans overflow-hidden">
+                
+
+                <table class="min-w-max w-full table-auto">
+
+                    <thead>
+                        <tr class="bg-green-200 text-green-600 text-sm">
+                        <th class="py-2 px-4 text-left">DATE</th>
+                        <th class="py-2 px-4 text-left">TIME</th>
+                        <th colspan="3"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% if @events != nil %>
+
+                            <% @events.each do |event| %>
+
+                            <p> <% event.look_a_likes %> </p>
+
+                                <% for item in event.events_look_a_likes %>
+                                    <% if (item.host_accepted != true) && (item.look_a_like == current_user.look_a_like) %>
+                                        <tr>
+                                        <td class="py-2 px-4 text-left"><%= event.date %></td>
+                                        <td class="py-2 px-4 text-left"><%= event.time %></td>
+                                        <td class="py-2 px-4"><%= link_to 'Show', event %></td>
+                                        <td class="py-2 px-4"><%= link_to 'Edit', edit_event_path(event) %></td>
+                                        <td class="py-2 px-4"><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                        </tr>
+                                    <% end %>
+                                <% end %>
+
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="">
+        <div class="overscroll-auto">
+
+            <h2>Future Events</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th colspan="3"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% if @events != nil %>
+
+                        <% @events.each do |event| %>
+
+                        <p> <% event.look_a_likes %> </p>
+                    
+                            <% for item in event.events_look_a_likes %>
+                                <% if (item.look_a_like_accepted == true) && (item.look_a_like == current_user.look_a_like) %>
+                                    <tr>
+                                    <td class="m-12"><%= event.date %></td>
+                                    <td class="m-9"><%= event.time %></td>
+                                    <td class="m-9"><%= link_to 'Show', event %></td>
+                                    <td class="m-9"><%= link_to 'Edit', edit_event_path(event) %></td>
+                                    <td class="m-9"><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                    </tr>
+                                <% end %>  
+                            <% end %> 
+
+                        <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+<% else %>
+    <p>You are currently not an active look-a-like profile</p>
+
+    <p><%= @user.id %></p>
+
+    <%= form_with(model: @user, local: true) do |user_form| %>
+
+        <div class="field">
+            <%= user_form.hidden_field :first_name, value: @user.first_name %>  
+        </div>
+
+
+        <%= user_form.fields_for :look_a_like, LookALike.new do |lookalike_form| %>   
+            <div class="field">
+                <%= lookalike_form.label "bio" %> 
+                <%= lookalike_form.text_field :bio %> 
+            </div>
+        <% end %>
+
+
+        <div class="actions">
+            <%= user_form.submit %>
+        </div>
+
+    <% end %>
+    
+<% end %>

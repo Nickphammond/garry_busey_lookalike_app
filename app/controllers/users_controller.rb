@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:user_profile, :user_profile_info, :edit_profile_info, :user_profile_lookalike, :edit_profile_lookalike, :update, :update_lookalike]
-    before_action :set_events, only: [:user_profile_lookalike]
+    before_action :set_events, only: [:user_profile_lookalike, :user_profile_info]
     before_action :authenticate_user!
 
     def user_profile

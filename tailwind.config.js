@@ -6,9 +6,6 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors: {
-        'custom-yellow':'#BAA333',
-      }
     },
   },
   variants: {
