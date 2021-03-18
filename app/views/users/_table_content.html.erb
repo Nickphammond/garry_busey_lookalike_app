@@ -1,0 +1,20 @@
+<% if invitations != nil %>
+
+    <% invitations.each do |event| %>
+
+        <p> <% event.look_a_likes %> </p>
+
+
+                <tr>
+                <td class="py-2 px-4 text-left"><%= event.date %></td>
+                <td class="py-2 px-4 text-left"><%= event.time %></td>
+                <td class="py-2 px-4"><%= link_to 'Show', event %></td>
+                <td class="py-2 px-4"><%= link_to 'Edit', edit_event_path(event) %></td>
+                <td class="py-2 px-4"><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+
+
+    <% end %>
+
+<%else%> 
+<% end %>

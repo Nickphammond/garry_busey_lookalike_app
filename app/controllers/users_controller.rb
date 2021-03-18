@@ -19,7 +19,10 @@ class UsersController < ApplicationController
 
 
     def user_profile_lookalike
+
     end
+
+
 
     def edit_profile_lookalike
     end

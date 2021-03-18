@@ -1,27 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Look A Likes</h1>
+<h1 class="flex justify-center">Look A Likes</h1>
 
-<div class="object-center">
-<div class="flex-col justify-center bg-gray-100 font-sans overflow-hidden ">
 
 
 
 
     <% @look_a_likes.each do |look_a_like| %>
+      <div class="flex justify-center">
 
-        <div class="container mx-auto">
-          <p><%= look_a_like.user.first_name %></p>
-          <p><%= look_a_like.user.last_name %></p>
-          <p><%= link_to 'Show', look_a_like %></p>
+        <div class="look-alike-card rounded overflow-hidden border bg-white">
+          <div class="w-full flex justify-between h-full px-3 pt-3">
+            <div class="w-full relative">
+              <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
+                <%if look_a_like.user.image.attached? %>
+                  <%= image_tag(look_a_like.user.image, :class => "") %>
+                <%end%>
+              </div>
+                
+              <% name = look_a_like.user.first_name + look_a_like.user.last_name %>
+
+              <p><%= link_to name, look_a_like %></p>
+
+              <div class="look-alike-bio">
+                <p><%= look_a_like.bio %></p>
+              </div>
+
+              <div class="look_alike_pics overflow-hidden">
+                <%if look_a_like.user.image.attached? %>
+                  <%= image_tag(look_a_like.user.image, :class => "pics") %>
+                <%end%>
+              </div>
+            </div>
+          </div>
         </div>
-
+      </div>
     <% end %>
 
 
-</div>
-</div>
+
+
 
 <br>
 
-<%= link_to 'New Look A Like', new_look_a_like_path %>
