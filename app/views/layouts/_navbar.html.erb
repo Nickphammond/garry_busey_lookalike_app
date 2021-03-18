@@ -1,15 +1,15 @@
 
 
 
-<div class="mx-auto px-2 sm:px-5 flex justify-center">
-<ul class="flex flex-col">
+<div class="nav-list-outer px-2 flex justify-center">
+<ul class="nav-list flex flex-col justify-evenly">
 <% if current_user %>
  
-        <li class= "inline-block p-4">
+        <li class= "nav-text inline-block p-2">
             <%= link_to "my events", user_events_path, class: "nav-link" %>
         </li>
 
-        <li class= "inline-block p-4">
+        <li class= "nav-text inline-block p-2">
             <%= link_to "my profile", user_profile_path, class: "nav-link" %>
         </li>
 
@@ -21,11 +21,11 @@
 <% end %>
 
 
-    <li class= "inline-block p-4">
+    <li class= "nav-text inline-block p-2">
         <%= link_to "events", events_path, class: "nav-link" %>
     </li>
 
-    <li class= "inline-block p-4">
+    <li class= "nav-text inline-block p-2">
         <%= link_to "look-a-likes", look_a_likes_path, class: "nav-link" %>
     </li>
 </ul>

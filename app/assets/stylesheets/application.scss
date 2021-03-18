@@ -17,13 +17,81 @@
 
  /* tailwind */
 
+ @media screen and (min-device-width: 768px) {
+    .sidenav {
+        position: fixed;
+        z-index: 1;
+        height: 100%;
+        width: 200px;
+        top: 0;
+        left: 0;
+        background-color: orange;
+        overflow-x: hidden; /* Disable horizontal scroll */
+        padding-top: 20px;
+      }
+
+
+      body {
+        padding-left: 200px;
+    }
+
+    input[type=text]{
+        width: 300px;
+    }
+}
+
+
+@media screen and (max-device-width: 769px) {
+
+    body{
+        margin-bottom: 500px;
+    }
+
+    .sidenav {
+        position: fixed;
+        z-index: 1;
+        width: 100%;
+        height: 30%;
+        bottom: 0;
+        background-color: orange;
+        display: flex;
+        justify-content: center;
+    }
+
+    input[type=text] {
+        width: 500px;
+        height: 50px;
+    }
+
+    .field {
+        font-size: 45px;
+    }
+
+    .nav-text {
+        font-size: 45px;
+    }
+
+  
+
+    td {
+        font-size: 28px;
+    }
+
+    .my_look_a_like {
+        margin-bottom: 1000px;
+    }
+
+}
+
+
+
 
 
 input[type=text] {
     border: 1.5px solid lightgrey;
     border-radius: 0.25rem;
     color: lightgrey;
-    width: 300px;
+    
 }
 
 input:focus {
@@ -45,18 +113,7 @@ input:focus {
     width: auto\9; /* ie8 */
 }
 
-body {
-    padding-left: 200px;
-}
 
-.sidenav {
-    position: fixed;
-    z-index: 1;
-    height: 100%;
-    width: 200px;
-    top: 0;
-    left: 0;
-    background-color: orange;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-  }
+
+
+

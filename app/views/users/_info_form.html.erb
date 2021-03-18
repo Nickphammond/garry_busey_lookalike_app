@@ -1,5 +1,5 @@
 <%= form_with(model: @user, local: true) do |user_form| %>
-  <div class="flex px-52 pt-44 items-center font-sans overflow-hidden flex-col">
+  <div class="flex px-10 pt-44 items-center font-sans overflow-hidden flex-col">
 
     <% if current_user.image.attached? %>
    
@@ -19,7 +19,7 @@
     </label>
 
   
-    <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
         <%= user_form.label :first_name %>
         <%= user_form.text_field :first_name %>
     </div>
