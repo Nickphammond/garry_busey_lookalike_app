@@ -1,10 +1,55 @@
 
-<%= form_with(model: @user, local: true) do |user_form| %>
+<% look_a_like = @user.look_a_like %>
 
+
+
+<% if look_a_like.images.attached? %>
+
+ffff
+
+<% for img in look_a_like.images  %>
+
+    <div class="round overflow-hidden rounded-lg shadow-lg flex justify-center">
+        <%= image_tag(img, :class => "picture flex flex-wrap") %>
+    </div>
+
+<% end %>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+<%= form_with(model: look_a_like, local: true) do |lookalike_form| %>
+
+
+ 
+        <div class="field">
+            <label class="">
+                Add image
+                <span style="display:none;">
+                    <%= lookalike_form.file_field :images, required: true, multiple: true, name: 'picture' %>
+                </span>
+            </label>
+        </div>
+
+
+
+
+    <%= lookalike_form.text_field :bio %> 
 
 
     <div class="actions flex justify-center pb-40 pt-20">
-      <%= user_form.submit "Update" %>
+      <%= lookalike_form.submit "Update" %>
     </div>
 
 <% end %>

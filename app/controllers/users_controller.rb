@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 
     def update
         @user.image.attach(params[:image])
+        @user.look_a_like.images.join(params[:imagess])
         if @user.update(user_params)
             redirect_to "/profile/info"
         else
@@ -41,9 +42,6 @@ class UsersController < ApplicationController
     end
 
 
-    def update_lookalike
-        
-    end
 
     
 
@@ -53,12 +51,14 @@ class UsersController < ApplicationController
         @user = current_user
     end
 
+
+
     def set_events
         @events = Event.all
     end
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio])
+        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio, :images])
     end
 
     # def lookalike_params
