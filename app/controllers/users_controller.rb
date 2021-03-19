@@ -64,8 +64,10 @@ class UsersController < ApplicationController
 
 
     def set_look_a_like_images
+        if @user.look_a_like != nil
         if @user.look_a_like.images != nil
             @images = @user.look_a_like.images
+        end
         end
     end
 

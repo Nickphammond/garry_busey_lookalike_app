@@ -18,7 +18,19 @@
                 <%end%>
               </div>
                 
-              <% name = look_a_like.user.first_name + look_a_like.user.last_name %>
+
+
+                <% a = look_a_like.user.first_name %>
+                <%if a == nil %>
+                  <% a = "" %>
+                <%end%>
+
+                <% b = look_a_like.user.last_name %>
+                <%if b == nil %>
+                  <% b = "" %>
+                <%end%>
+
+              <% name = a + b %>
 
               <p><%= link_to name, look_a_like %></p>
 
