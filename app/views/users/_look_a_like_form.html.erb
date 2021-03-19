@@ -6,7 +6,7 @@
 
 
     <div class="m-20 p-10">
-    <% @user.look_a_like.images.each do |img| %>
+    <% @images.each do |img| %>
         <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
             <%= image_tag(img, :class => "") %>
         </div>
