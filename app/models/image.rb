@@ -3,6 +3,5 @@ class Image < ApplicationRecord
 
   has_one :user
 
-  has_many :images_look_a_likes
-  has_many :look_a_likes, through: :images_look_a_likes
+  has_one :look_a_like
 end

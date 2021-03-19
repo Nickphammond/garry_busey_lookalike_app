@@ -64,12 +64,14 @@ class UsersController < ApplicationController
 
 
     def set_look_a_like_images
-        @images = @user.look_a_like.images
+        if @user.look_a_like.images != nil
+            @images = @user.look_a_like.images
+        end
     end
 
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio, :id, :images])
+        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio, :id, images: []])
     end
 
 end

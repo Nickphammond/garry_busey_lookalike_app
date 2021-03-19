@@ -6,9 +6,9 @@
 
 
     <div class="m-20 p-10">
-    <% @images.each do |img| %>
+    <% (0...@images.count).each do |img| %>
         <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
-            <%= image_tag(img, :class => "") %>
+            <%= image_tag(@images[img], :class => "") %>
         </div>
 
     <% end %>
@@ -28,18 +28,17 @@
                         <label class="">
                             Add image
                             <span style="display:none;">
-                                <%= lookalike_form.file_field :images %>
+                                <%= lookalike_form.file_field :images, multiple: true %>
                             </span>
                         </label>
                     </div>
 
 
 
-                    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col justify-center ">
-                        <%= lookalike_form.hidden_field :id, value: @user.look_a_like.id %>  
-                    </div>
 
-                    <%= lookalike_form.text_field :bio %> 
+                    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col justify-center ">
+                        <%= lookalike_form.text_field :bio %> 
+                    </div>
 
                 </div>
 
