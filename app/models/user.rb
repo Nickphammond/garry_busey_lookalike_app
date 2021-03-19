@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :events
 
   accepts_nested_attributes_for :address
-  accepts_nested_attributes_for :look_a_like
+  accepts_nested_attributes_for :look_a_like, update_only: true
   accepts_nested_attributes_for :image
 
   has_one_attached :image

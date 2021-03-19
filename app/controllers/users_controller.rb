@@ -27,13 +27,17 @@ class UsersController < ApplicationController
     def edit_profile_lookalike
     end
 
-
-
+    # images.attach(io: File.open("/Users/nicholashammond/Desktop/screen_shot.png"), filename: "screen_shot.png", content_type: "image/png")
+    # /Users/nicholashammond/Desktop/screen_shot.png
 
 
     def update
-        @user.image.attach(params[:image])
-        @user.look_a_like.images.join(params[:imagess])
+        
+        # @user.image.attach(params[:image])
+        # @user.look_a_like.images.attach(params[:images])
+
+
+
         if @user.update(user_params)
             redirect_to "/profile/info"
         else
@@ -49,6 +53,7 @@ class UsersController < ApplicationController
 
     def set_user
         @user = current_user
+        @look_a_like = @user.look_a_like
     end
 
 
@@ -58,7 +63,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio, :images])
+        params.require(:user).permit(:first_name, :last_name, :image, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], look_a_like_attributes: [:bio, :id, :images])
     end
 
     # def lookalike_params
