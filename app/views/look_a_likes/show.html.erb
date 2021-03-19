@@ -1,12 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 
-<div class="bg-white rounded shadow border p-6 w-64">
-  <h5 class="text-3xl font-bold mb-4 mt-0">First name:</h5>
-  <p class="text-gray-700 text-sm"><%= @look_a_like.user.first_name %></p>
-</div>
-
-
 
 <div class="card" style="width: 18rem;">
 <p class="text-cyan-600">
@@ -20,12 +14,6 @@
 </p>
 
 
-<% if @look_a_like.images.attached? %>
-  <p>
-    <strong>Photo:</strong>
-    <%= image_tag @look_a_like.images %>
-  </p>
-<% end %>
 
 <p>
   <strong class="text-amber">Bio:</strong>
@@ -33,6 +21,17 @@
 </p>
 
 </div>
+
+
+
+<div class="m-20 p-10">
+    <% (0...@images.count).each do |img| %>
+        <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
+            <%= image_tag(@images[img], :class => "") %>
+        </div>
+
+    <% end %>
+    </div>
 
 
 <%= link_to 'Back', look_a_likes_path %>

@@ -61,7 +61,10 @@ class LookALikesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_look_a_like
       @look_a_like = LookALike.find(params[:id])
+      @images = @look_a_like.images
     end
+
+    
 
     # Only allow a list of trusted parameters through.
     def look_a_like_params
