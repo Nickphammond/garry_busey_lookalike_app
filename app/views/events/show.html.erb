@@ -1,5 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
+<%= @event.user.id%>
+
+<p>
+  <strong>Host Name:</strong>
+  <%= @event.user.first_name + ' ' + @event.user.first_name%>
+</p>
+
+
 <p>
   <strong>Date:</strong>
   <%= @event.date %>
