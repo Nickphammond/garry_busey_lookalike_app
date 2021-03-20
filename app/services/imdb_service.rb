@@ -1,3 +1,7 @@
+require "http"
+require 'json'
+
+
 class ImdbService
 
     def get_title_by_actor(actor)

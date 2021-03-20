@@ -71,3 +71,9 @@ gem 'activestorage-cloudinary-service'
 
 # add stripe for payments
 gem 'stripe', "~> 5.29"
+
+## add http gem
+gem "http"
+
+## add json gem
+gem 'json'
