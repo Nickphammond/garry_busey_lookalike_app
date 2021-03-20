@@ -38,6 +38,11 @@
   <% end %>
 
   <div class="field">
+    <%= event_form.label :price %>
+    <%= event_form.number_field :price %>
+  </div>
+
+  <div class="field">
     <%= event_form.label :listed %>
     <%= event_form.check_box :listed %>
   </div>

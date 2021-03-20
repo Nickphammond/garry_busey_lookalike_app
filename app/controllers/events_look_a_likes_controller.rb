@@ -3,6 +3,9 @@ class EventsLookALikesController < ApplicationController
     before_action :set_events_look_a_like
 
     def show
+        if @events_look_a_like.event.price != nil
+            @events_look_a_like.price = @events_look_a_like.event.price
+        end
         session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         customer_email: @events_look_a_like.event.user.email,

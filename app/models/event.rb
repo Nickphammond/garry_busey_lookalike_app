@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+    validates_presence_of :address
 
     belongs_to :address
     belongs_to :user

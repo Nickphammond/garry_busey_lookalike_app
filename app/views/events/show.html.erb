@@ -1,12 +1,16 @@
-<p id="notice"><%= notice %></p>
 
 
-<%= @event.user.id%>
 
-<p>
-  <strong>Host Name:</strong>
-  <%= @event.user.first_name + ' ' + @event.user.first_name%>
-</p>
+<% if @event.user.first_name != nil && @event.user.first_name != nil %>
+  <p>
+    <strong>Host Name:</strong>
+    <%= @event.user.first_name + ' ' + @event.user.first_name%>
+  </p>
+<% else %>
+  <p>
+    <strong>User has not set name</strong>
+  </p>
+<% end %>
 
 
 <p>
@@ -22,6 +26,16 @@
 <p>
   <strong>Address:</strong>
   <%= @event.address.street_number + ' ' + @event.address.street_name + ' ' + @event.address.suburb.name + ' ' + @event.address.suburb.postcode.to_s %>
+</p>
+
+
+<p>
+  <strong>Payment:</strong>
+  <% if @event.price != nil %>
+    <%= @event.price.to_s + '.00 AUD' %>
+  <% else %>
+    <%= '.50 AUD' %>
+  <% end %>
 </p>
 
 
