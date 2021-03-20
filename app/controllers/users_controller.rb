@@ -28,16 +28,11 @@ class UsersController < ApplicationController
     def edit_profile_lookalike
     end
 
-    # images.attach(io: File.open("/Users/nicholashammond/Desktop/screen_shot.png"), filename: "screen_shot.png", content_type: "image/png")
-    # /Users/nicholashammond/Desktop/screen_shot.png
 
 
+    
     def update
         
-        # @user.image.attach(params[:image])
-        # @user.look_a_like.images.attach(params[:images])
-
-
 
         if @user.update(user_params)
             redirect_to "/profile/info"
