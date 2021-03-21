@@ -56,7 +56,55 @@
 
 
 
-<% else %>
+
+
+
+
+
+
+
+    <div class="m-12">
+        <h2 class="flex justifyer-cent">Suburbs</h2>
+
+        <div class="overflow-x-auto">
+            
+            <div class="min-w-screen bg-gray-100 flex items-center justify-center overscroll-auto font-sans overflow-hidden">
+                
+
+                <table class="min-w-max w-full table-auto">
+
+                    <thead>
+                        <tr class="bg-green-200 text-green-600 text-sm">
+                        <th class="py-2 px-4 text-left">name</th>
+                        <th class="py-2 px-4 text-left">postcode</th>
+                        <th colspan="3"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% if @user.look_a_like.suburbs != nil %>
+
+                            <% @user.look_a_like.suburbs.each do |suburb| %>
+
+                                <tr>
+                                <td class="m-12"><%= suburb.name %></td>
+                                <td class="m-9"><%= suburb.postcode %></td>
+                                </tr>
+
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+ 
+    </div>
+
+
+
+    <%= render 'suburbs/form', user: @user %>
+
 
 
 <% end %>

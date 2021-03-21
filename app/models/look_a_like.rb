@@ -11,5 +11,5 @@ class LookALike < ApplicationRecord
     has_many :suburbs_areas
     has_many :suburbs, through: :suburbs_areas
 
-    accepts_nested_attributes_for :user, :events
+    accepts_nested_attributes_for :user, :events, :suburbs
 end

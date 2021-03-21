@@ -1,0 +1,21 @@
+
+<%= form_with(model: @user.look_a_like, local: true) do |user_form| %>
+
+    <%= user_form.fields_for :suburbs, Suburb.new do |suburb_form| %>
+        <%= suburb_form.label :name %>
+        <%= suburb_form.text_field :name %>
+
+        <%= suburb_form.label :postcode %>
+        <%= suburb_form.text_field :postcode %>
+
+    
+        <%= suburb_form.hidden_field :look_a_like, value: @user.look_a_like %>  
+  
+    <% end %>
+
+
+
+      <%= user_form.submit "Add Suburb" %>
+ 
+
+<% end %>

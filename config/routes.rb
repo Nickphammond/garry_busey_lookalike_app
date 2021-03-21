@@ -30,4 +30,7 @@ Rails.application.routes.draw do
   get "/payments/success", to: "payments#success"
 
   get "/user_events", to: "events#user_events", as: "user_events"
+
+
+  get "/suburbs/edit", to: "suburbs#edit", as: "edit_suburbs"
 end

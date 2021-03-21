@@ -173,9 +173,7 @@
     <div class="flex px-10 pt-44 items-center font-sans overflow-hidden flex-col justify-center">
     <%= form_with(model: @user, local: true) do |user_form| %>
 
-        <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
-            <%= user_form.hidden_field :first_name, value: @user.first_name %>  
-        </div>
+        <%= user_form.hidden_field :first_name, value: @user.first_name %>  
 
 
         <%= user_form.fields_for :look_a_like, LookALike.new do |lookalike_form| %> 
