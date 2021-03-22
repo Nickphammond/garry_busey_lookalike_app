@@ -1,7 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :set_events
+  before_action :set_events_look_a_like, only: [:show]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
+
+
+  before_action :set_movies, only: [:select_movie]
+
+  require 'uri'
+  require 'net/http'
+  require 'openssl'
+  require 'json'
 
 
   # GET /events or /events.json
@@ -72,7 +81,19 @@ class EventsController < ApplicationController
   
   def submit_interest
     @event = Event.find(params[:format])
-    @event.look_a_likes.append(current_user.look_a_like)
+
+    state = true
+    @event.look_a_likes.each do |item|
+      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      if item.user.id == current_user.id
+        state = false
+
+      end
+    end
+
+    if state == true
+      @event.look_a_likes.append(current_user.look_a_like)
+    end
 
 
   end
@@ -81,6 +102,13 @@ class EventsController < ApplicationController
   def user_events
 
   end
+
+
+
+  def select_movie
+
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -92,9 +120,46 @@ class EventsController < ApplicationController
       @events = Event.all
     end
 
+    def set_events_look_a_like
+
+      @included = false
+      @intersection = nil
+
+      @event.events_look_a_likes.each do |item1|
+        current_user.look_a_like.events_look_a_likes.each do |item2|
+          if item1.id == item2.id
+            @included = true
+            @intersection = item1
+          end
+        end
+      end
+
+    end
+
     # Only allow a list of trusted parameters through.
     def event_params
       params.require(:event).permit(:date, :time, :price, :user_id, :listed, look_a_likes: [], address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
     end
 
+
+
+
+
+
+    def set_movies
+      url = URI("https://imdb8.p.rapidapi.com/actors/get-all-filmography?nconst=nm0000997")
+  
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      request = Net::HTTP::Get.new(url)
+      request["x-rapidapi-key"] = AUTH_DETAILS["IMDB_API_KEY"]
+      request["x-rapidapi-host"] = AUTH_DETAILS["IMDB_API_HOST"]
+  
+      response = http.request(request)
+      @movies = JSON.parse(response.read_body)["filmography"]
+  
+    end
+
 end
+

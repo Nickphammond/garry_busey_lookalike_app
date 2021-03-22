@@ -64,6 +64,9 @@ class EventsLookALikesController < ApplicationController
 
     end
 
+
+    
+
     private
 
     def set_events_look_a_like

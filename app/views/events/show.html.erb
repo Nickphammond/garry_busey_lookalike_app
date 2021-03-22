@@ -47,7 +47,7 @@
   <% if current_user.look_a_like != nil %>
 
 
-    <% if @event.look_a_likes.include?(current_user.look_a_like)%>
+    <% if @included %>
 
       <% userll = current_user.look_a_like.events_look_a_likes %>
       <% ans = userll[0] %>
@@ -63,7 +63,7 @@
 
         <p>Would you like to confirm your interest?<p>
 
-        <%= form_with(model: @event.events_look_a_likes.intersection(current_user.events_look_a_likes)[0], local: true) do |eventlal_form| %>
+        <%= form_with(model: @intersection, local: true) do |eventlal_form| %>
 
         
           <div class="field">
@@ -81,6 +81,13 @@
       <% else %>
 
         <p> You have sent expression of interest </p>
+
+
+    
+
+        link_to 'Select a movie', select_movie_path()
+
+
 
       <% end %>
 
@@ -113,10 +120,11 @@
     <% @event.events_look_a_likes.each do |events_look_a_like| %> 
 
       <tr>
-        <td><%= events_look_a_like.event.user.first_name %></td>
-        <td><%= events_look_a_like.event.user.last_name %></td>
+              <td><%= events_look_a_like.look_a_like.user.id %></td>
+
+        <td><%= events_look_a_like.look_a_like.user.first_name %></td>
+        <td><%= events_look_a_like.look_a_like.user.last_name %></td>
         <td><%= link_to 'Show Look-a-Like', events_look_a_like %></td>
-        <td><%= link_to 'Go To Pay Look-a-Like', events_look_a_like_path(events_look_a_like) %></td>
       </tr>
 
 

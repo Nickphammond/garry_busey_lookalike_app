@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
-    before_action :set_movies
-
+    before_action :set_movies, only: [:index]
 
     require 'uri'
     require 'net/http'
@@ -12,11 +11,18 @@ class MoviesController < ApplicationController
             
 
 
-        
+    
 
     def index
     end
 
+
+
+    def add_movie
+        
+    end
+
+ 
 
 
     private
