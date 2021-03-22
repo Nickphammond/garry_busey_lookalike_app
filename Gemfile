@@ -77,3 +77,10 @@ gem "http"
 
 ## add json gem
 gem 'json'
+
+
+gem 'uri'
+
+gem 'net-http'
+
+gem 'openssl'

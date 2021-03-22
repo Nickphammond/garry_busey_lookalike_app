@@ -46,4 +46,7 @@ Rails.application.routes.draw do
 
 
   get "/suburbs/edit", to: "suburbs#edit", as: "edit_suburbs"
+
+
+  get "/movies", to: "movies#index", as: "movies"
 end

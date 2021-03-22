@@ -142,6 +142,10 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.4)
     msgpack (1.4.2)
+    net-http (0.1.1)
+      net-protocol
+      uri
+    net-protocol (0.1.0)
     netrc (0.11.0)
     nio4r (2.5.7)
     nokogiri (1.11.2)
@@ -151,6 +155,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.2-x86_64-linux)
       racc (~> 1.4)
+    openssl (2.2.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
     popper_js (2.8.6)
@@ -256,6 +261,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    uri (0.10.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -296,6 +302,8 @@ DEPENDENCIES
   jquery-rails
   json
   listen (~> 3.2)
+  net-http
+  openssl
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.5)
@@ -307,6 +315,7 @@ DEPENDENCIES
   stripe (~> 5.29)
   turbolinks (~> 5)
   tzinfo-data
+  uri
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
