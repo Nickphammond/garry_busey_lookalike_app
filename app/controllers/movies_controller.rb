@@ -34,8 +34,12 @@ class MoviesController < ApplicationController
         http.use_ssl = true
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         request = Net::HTTP::Get.new(url)
-        request["x-rapidapi-key"] = AUTH_DETAILS["IMDB_API_KEY"]
-        request["x-rapidapi-host"] = AUTH_DETAILS["IMDB_API_HOST"]
+        # request["x-rapidapi-key"] = AUTH_DETAILS["IMDB_API_KEY"]
+        # request["x-rapidapi-host"] = AUTH_DETAILS["IMDB_API_HOST"]
+        request["x-rapidapi-key"] = IMDB_API_KEY
+        request["x-rapidapi-host"] = IMDB_API_HOST
+
+
 
         response = http.request(request)
         @movies = JSON.parse(response.read_body)["filmography"]
