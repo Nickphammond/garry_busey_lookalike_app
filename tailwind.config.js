@@ -6,6 +6,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      backgroundImage: theme => ({
+        'gb1': "url('app/assets/img/gb1.jpg')",
+       })
     },
   },
   variants: {

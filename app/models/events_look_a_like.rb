@@ -6,3 +6,11 @@ class EventsLookALike < ApplicationRecord
     accepts_nested_attributes_for :look_a_like
     accepts_nested_attributes_for :event
 end
+
+
+
+
+
+
+
+

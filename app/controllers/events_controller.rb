@@ -46,8 +46,10 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1 or /events/1.json
   def update
+
     respond_to do |format|
       if @event.update(event_params)
+
         format.html { redirect_to @event, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
@@ -64,6 +66,15 @@ class EventsController < ApplicationController
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+
+  
+  def submit_interest
+    @event = Event.find(params[:format])
+    @event.look_a_likes.append(current_user.look_a_like)
+
+
   end
 
   
@@ -83,7 +94,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :time, :price, :user_id, :listed, address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]], events_look_a_likes_attributes: [:look_a_like_accepted])
+      params.require(:event).permit(:date, :time, :price, :user_id, :listed, look_a_likes: [], address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
     end
 
 end

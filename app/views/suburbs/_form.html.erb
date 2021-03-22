@@ -1,21 +1,20 @@
 
-<%= form_with(model: @user.look_a_like, local: true) do |user_form| %>
+<%= form_with(model: @suburb, local: true) do |suburb_form| %>
 
-    <%= user_form.fields_for :suburbs, Suburb.new do |suburb_form| %>
+
+    <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
         <%= suburb_form.label :name %>
         <%= suburb_form.text_field :name %>
+    </div>
 
+    <div class="field p-10 flex items-left font-sans overflow-hidden flex-col">
         <%= suburb_form.label :postcode %>
         <%= suburb_form.text_field :postcode %>
-
-    
-        <%= suburb_form.hidden_field :look_a_like, value: @user.look_a_like %>  
-  
-    <% end %>
+    </div>
 
 
 
-      <%= user_form.submit "Add Suburb" %>
+    <%= suburb_form.submit "Add Suburb" %>
  
 
 <% end %>

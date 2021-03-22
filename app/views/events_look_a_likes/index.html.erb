@@ -1,0 +1,32 @@
+
+
+<%= @event.id %>
+asdfafas
+    <%= form_with(model: @events_look_a_like, local: true) do |events_look_a_like_form| %>
+
+
+        <%= events_look_a_like_form.fields_for :look_a_like do |look_a_like_form| %>
+      
+            <div class="field">
+            <%= look_a_like_form.hidden_field :look_a_like, value: current_user.look_a_like %>  
+            </div>
+
+        <% end %>
+
+        <%= events_look_a_like_form.fields_for :event do |event_form| %>
+      
+            <div class="field">
+            <%= event_form.hidden_field :event, value: @event %>  
+            </div>
+
+        <% end %>
+
+
+            <div class="actions">
+            <%= events_look_a_like_form.submit %>
+            </div>
+
+    <% end %>
+
+
+    

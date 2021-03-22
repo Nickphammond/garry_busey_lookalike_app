@@ -42,6 +42,14 @@ class UsersController < ApplicationController
     end
 
 
+    def remove_suburb
+
+        current_user.look_a_like.suburbs.delete(Suburb.find(params[:format]))
+
+
+    end
+
+
 
     
 

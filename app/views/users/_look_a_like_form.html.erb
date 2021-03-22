@@ -88,22 +88,33 @@
                             <% @user.look_a_like.suburbs.each do |suburb| %>
 
                                 <tr>
-                                <td class="m-12"><%= suburb.name %></td>
-                                <td class="m-9"><%= suburb.postcode %></td>
+                                    <td class="m-12"><%= suburb.name %></td>
+                                    <td class="m-9"><%= suburb.postcode %></td>
+                                    <td class="m-9"><%= link_to 'Remove Suburb', remove_suburb_path(suburb) %></td>
                                 </tr>
 
+
+
+
                             <% end %>
+
                         <% end %>
                     </tbody>
                 </table>
             </div>
         </div>
- 
     </div>
 
 
 
-    <%= render 'suburbs/form', user: @user %>
+
+
+
+<%= link_to 'Suburb', new_suburb_path %>
+
+
+
+
 
 
 

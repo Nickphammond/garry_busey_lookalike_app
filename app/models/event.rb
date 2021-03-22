@@ -9,4 +9,11 @@ class Event < ApplicationRecord
 
     accepts_nested_attributes_for :address
     accepts_nested_attributes_for :user
+    accepts_nested_attributes_for :look_a_likes
 end
+
+
+
+
+
+

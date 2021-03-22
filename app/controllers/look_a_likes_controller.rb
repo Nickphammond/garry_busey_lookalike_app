@@ -68,7 +68,7 @@ class LookALikesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def look_a_like_params
-      params.require(:look_a_like).permit(:first_name, :last_name, suburbs_attributes: [], images: [])
+      params.require(:look_a_like).permit(:first_name, :last_name, suburbs_look_a_likes_attributes: [suburb_attributes: [:name, :postcode]], images: [])
     end
 end
 

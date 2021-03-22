@@ -86,24 +86,18 @@
 
     <% else %>
 
+
+
       <p>You can send an expression of interest<p>
 
-      <%= form_with(model: @event, local: true) do |event_form| %>
-
-      
-        <div class="field">
-          <%= event_form.hidden_field :look_a_likes, value: @event.look_a_likes.append(current_user.look_a_like) %>  
-        </div>
 
 
-        
+      <%= link_to 'Send Expression of Interest', submit_interest_path(@event) %>
 
 
-        <div class="actions">
-          <%= event_form.submit %>
-        </div>
+ 
 
-      <% end %>
+
 
     <% end %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_20_132335) do
+ActiveRecord::Schema.define(version: 2021_03_21_074642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,13 +103,13 @@ ActiveRecord::Schema.define(version: 2021_03_20_132335) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "suburbs_areas", force: :cascade do |t|
-    t.bigint "look_a_like_id", null: false
+  create_table "suburbs_look_a_likes", force: :cascade do |t|
     t.bigint "suburb_id", null: false
+    t.bigint "look_a_like_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["look_a_like_id"], name: "index_suburbs_areas_on_look_a_like_id"
-    t.index ["suburb_id"], name: "index_suburbs_areas_on_suburb_id"
+    t.index ["look_a_like_id"], name: "index_suburbs_look_a_likes_on_look_a_like_id"
+    t.index ["suburb_id"], name: "index_suburbs_look_a_likes_on_suburb_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -140,8 +140,8 @@ ActiveRecord::Schema.define(version: 2021_03_20_132335) do
   add_foreign_key "events_look_a_likes", "look_a_likes"
   add_foreign_key "events_look_a_likes", "movies"
   add_foreign_key "look_a_likes", "images"
-  add_foreign_key "suburbs_areas", "look_a_likes"
-  add_foreign_key "suburbs_areas", "suburbs"
+  add_foreign_key "suburbs_look_a_likes", "look_a_likes"
+  add_foreign_key "suburbs_look_a_likes", "suburbs"
   add_foreign_key "users", "addresses"
   add_foreign_key "users", "images"
   add_foreign_key "users", "look_a_likes"

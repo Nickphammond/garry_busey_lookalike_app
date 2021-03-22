@@ -1,0 +1,48 @@
+
+
+
+
+<div class="m-12">
+
+    <div class="overflow-x-auto">
+        
+        <div class="min-w-screen bg-gray-100 flex items-center justify-center overscroll-auto font-sans overflow-hidden">
+            
+
+            <table class="min-w-max w-full table-auto">
+
+                <thead>
+                    <tr class="bg-green-200 text-green-600 text-sm">
+                    <th class="py-2 px-4 text-left">name</th>
+                    <th class="py-2 px-4 text-left">postcode</th>
+                    <th colspan="3"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+
+
+                <% @current_user.look_a_like.suburbs.each do |suburb| %>
+
+                        <tr>
+                            <td><%= suburb.name %></td>
+                            <td><%= suburb.postcode %></td>
+                            <td><%= link_to 'Show', suburb %></td>
+                            <td><%= link_to 'Edit', edit_event_path(suburb) %></td>
+                            <td><%= link_to 'Destroy', suburb, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                        </tr>
+
+                <% end %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <%= render 'suburbs/form'%>
+</div>
+
+

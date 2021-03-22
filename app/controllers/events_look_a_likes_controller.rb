@@ -1,6 +1,12 @@
 class EventsLookALikesController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_events_look_a_like
+    before_action :set_events_look_a_like, only: [:edit, :update, :destroy]
+    before_action :set_event
+
+
+    def new
+        @events_look_a_like = EventsLookALike.new
+    end
 
     def show
         if @events_look_a_like.event.price != nil
@@ -30,10 +36,49 @@ class EventsLookALikesController < ApplicationController
 
     end
 
+
+    def create
+        @event = Event.find(params[:events_look_a_like][:event_attributes][:id])
+        @events_look_a_like = EventsLookALike.new(event_id: params)
+        @events_look_a_like.look_a_like = current_user.look_a_like
+        @events_look_a_like.event = @event
+
+    
+        respond_to do |format|
+          if @event.save
+            format.html { redirect_to @event, notice: "Event was successfully created." }
+            format.json { render :show, status: :created, location: @event }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @event.errors, status: :unprocessable_entity }
+          end
+        end
+    end
+
+
+
+
+
+    def update
+
+
+    end
+
     private
 
     def set_events_look_a_like
-        @events_look_a_like = EventsLookALike.find(params[:id])
+        @events_look_a_like = EventsLookALike.new(event_id: params)
+        @event = Event.find(params[:events_look_a_like][:event_attributes][:id])
+        @events_look_a_like.event = @event
+        @events_look_a_like.look_a_like = current_user.look_a_like
+    end
+
+    def set_event
+  
+    end
+
+    def event_params
+        params.require(:events_look_a_like).permit(:event)
     end
 
 end
