@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   get "/remove_suburb", to: "users#remove_suburb", as: "remove_suburb"
 
+  get "/respond_interest", to: "events#respond_interest", as: "respond_interest"
+
 
   get "/suburbs/edit", to: "suburbs#edit", as: "edit_suburbs"
 

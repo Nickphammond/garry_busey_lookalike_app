@@ -95,6 +95,30 @@ class EventsController < ApplicationController
       @event.look_a_likes.append(current_user.look_a_like)
     end
 
+  end
+
+
+
+
+  def respond_interest
+    @events_look_a_like = EventsLookALike.find(params[:format])
+
+
+    if @events_look_a_like.host_accepted != true
+
+      @events_look_a_like.host_accepted = true
+
+      @events_look_a_like.save
+
+    else
+
+      @events_look_a_like.look_a_like_accepted = true
+      @events_look_a_like.save
+
+    end
+
+
+    
 
   end
 

@@ -36,9 +36,26 @@
 
 
 
-<button class="buy-button p-3" data-stripe="payment">
-        <h4>Finalise Payment</h4>
-</button>
+
+<% if @events_look_a_like.look_a_like_accepted != true %>
+
+  <% if @events_look_a_like.host_accepted != true %>
+
+    <td><%= link_to 'Respond To Expression of Interest', respond_interest_path(@events_look_a_like) %></td>
+
+  <% else %>
+
+    <td>Waiting for LookALike to confirm </td>
+
+  <% end %>
+
+<% else %>
+
+  <button class="buy-button p-3" data-stripe="payment">
+          <h4>Finalise Payment</h4>
+  </button>
+
+<% end %>
 
         
 <script src="https://js.stripe.com/v3/"></script>

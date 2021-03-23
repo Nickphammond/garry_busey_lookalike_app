@@ -9,6 +9,10 @@ class EventsLookALikesController < ApplicationController
     end
 
     def show
+
+        @events_look_a_like = EventsLookALike.find(params[:id])
+
+
         if @events_look_a_like.event.price != nil
             @events_look_a_like.price = @events_look_a_like.event.price
         end
@@ -32,7 +36,7 @@ class EventsLookALikesController < ApplicationController
         cancel_url: "#{root_url}events_look_a_likes"
     )
 
-    @session_id = session.id
+        @session_id = session.id
 
     end
 

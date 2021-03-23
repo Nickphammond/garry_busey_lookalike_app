@@ -58,23 +58,17 @@
       <% end %>
       
       <% if ans.host_accepted == true%>
+        <% if ans.host_accepted == true%>
 
-        <p> The host has accepted your expression of interest <p>
+          <p>You will receive payment soon!<p>
 
-        <p>Would you like to confirm your interest?<p>
+        <% else %>
 
-        <%= form_with(model: @intersection, local: true) do |eventlal_form| %>
+          <p> The host has accepted your expression of interest <p>
 
-        
-          <div class="field">
-            <%= eventlal_form.hidden_field :look_a_like_accepted, value: true %>  
-          </div>
-          
+          <p>Would you like to confirm your interest?<p>
 
-
-          <div class="actions">
-            <%= eventlal_form.submit %>
-          </div>
+          <%= link_to 'Confirm Expression of Interest', respond_interest_path(@intersection) %>
 
         <% end %>
 
@@ -120,25 +114,22 @@
     <% @event.events_look_a_likes.each do |events_look_a_like| %> 
 
       <tr>
-              <td><%= events_look_a_like.look_a_like.user.id %></td>
+        <td><%= events_look_a_like.look_a_like.user.id %></td>
 
         <td><%= events_look_a_like.look_a_like.user.first_name %></td>
         <td><%= events_look_a_like.look_a_like.user.last_name %></td>
-        <td><%= link_to 'Show Look-a-Like', events_look_a_like %></td>
+        <td><%= link_to 'Show Look-a-Like', events_look_a_like.look_a_like %></td>
+        <td><%= link_to 'Show', events_look_a_like %></td>
+
+        <% if events_look_a_like.look_a_like_accepted != true %>
+          <p> LookALike Showed Interest</p>
+        <% else %>
+          <p> LookALike Confirmed Interest</p>
+        <% end %>
       </tr>
 
-
-    
-      <% if events_look_a_like.look_a_like_accepted == true %>
-     
-        <tr>
-          <td><%= events_look_a_like.look_a_like.user.first_name %></td>
-          <td><%= events_look_a_like.look_a_like.user.last_name %></td>
-          <td><%= link_to 'Show', events_look_a_like.look_a_like %></td>
-          <p> Pay LookALike </p>
-        </tr>
-      <% end %>
     <% end %>
+
 
 
   <br>
