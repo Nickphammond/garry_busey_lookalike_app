@@ -1,11 +1,84 @@
 
 
-<div class="gb1">
-
-<h1>My Profile</h1>
 
 
+<div class="profile-container flex flex-col mx-20 my-52">
 
-<%= link_to "My Info", user_profile_info_path(current_user) %>
-<%= link_to "My Lookalike profile", user_profile_lookalike_path(current_user) %>
+
+
+    <div class="flex px-16 pt-44 items-center font-sans overflow-hidden flex-col flex justify-center">
+    <div class="flex bg-gray-50 bg-opacity-100 w-full mb-12 items-center font-sans overflow-hidden flex-col flex justify-center">
+
+
+            <h1 class="font-bold text-2xl font-mono my-7">My Details</h1>
+
+
+
+
+            <% if current_user.image.attached? %>
+
+                <div class="round overflow-hidden rounded-lg shadow-lg flex justify-center">
+                    <%= image_tag(@user.image, :class => "picture flex flex-wrap") %>
+                </div>
+
+            <% end %>
+
+
+
+
+            <div class="field my-10 text-block flex items-left font-sans overflow-hidden flex-col">
+                <h2 class="font-bold text-2xl font-mono" >First Name</h2>
+                <% if (current_user.first_name) != nil %>
+                    <p class="bg-gray-200 my-7 font-mono"><%= current_user.first_name %></p>
+                <% else %>
+                    <p class="bg-gray-200 my-7 font-mono">You have not given a first name</p>
+                <% end %>
+            </div>
+
+
+            <div class="border-dotted w-3/4 border-t-2"></div>
+
+
+
+            <div class="field text-block my-10 flex items-left font-sans overflow-hidden flex-col">
+                <h2 class="font-bold text-2xl font-mono">Last Name</h2>
+                <% if (current_user.last_name) != nil %>
+                    <p class="bg-gray-200 my-7 font-mono"><%= current_user.last_name %></p>
+                <% else %>
+                    <p class="bg-gray-200 my-7 font-mono">You have not given a last name </p>
+                <% end %>
+            </div>
+
+
+            <div class="border-dotted w-3/4 border-t-2"></div>
+
+
+            <div class="field text-block my-10 flex items-left font-sans overflow-hidden flex-col">
+                <h2 class="font-bold text-2xl font-mono ">Address</h2>
+                <% if (current_user.address) != nil %>
+                    <p class="bg-gray-200 mt-7 mb-2 font-mono"><%= current_user.address.street_number %></p>
+                    <p class="bg-gray-200 my-2 font-mono"><%= current_user.address.street_name %></p>
+                    <p class="bg-gray-200 my-2 font-mono"><%= current_user.address.suburb.name %></p>
+                    <p class="bg-gray-200 my-2 font-mono"><%= current_user.address.suburb.postcode %></p>
+
+
+                <% else %>
+                    <p class="bg-gray-200 my-7 font-mono">You have not given an address</p>
+                <% end %>
+            </div>
+
+
+            <div class="field text-block my-10 flex items-left font-sans overflow-hidden flex-col">
+                <%= link_to "edit profile info", edit_profile_info_path(current_user) %>
+            </div>
+
+
+
+            <%= link_to "Go To My Look-a-Like Details", user_profile_info_path(current_user) %>
+
+    </div>
+    </div>
+
+
+
 </div>

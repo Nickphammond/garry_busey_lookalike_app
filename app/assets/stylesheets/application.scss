@@ -20,7 +20,7 @@
  @media screen and (min-device-width: 768px) {
     .sidenav {
         position: fixed;
-        z-index: 1;
+        z-index: 100;
         height: 100%;
         width: 200px;
         top: 0;
@@ -38,6 +38,12 @@
     input[type=text]{
         width: 300px;
     }
+
+    .text-block {
+        width: 12rem;
+        word-wrap: break-word;
+    }
+    
 }
 
 
@@ -49,7 +55,7 @@
 
     .sidenav {
         position: fixed;
-        z-index: 1;
+        z-index: 100;
         width: 100%;
         height: 30%;
         bottom: 0;
@@ -80,6 +86,17 @@
     .my_look_a_like {
         margin-bottom: 1000px;
     }
+
+    .text-block {
+        width: 18rem;
+        word-wrap: break-word;
+    }
+
+    .login {
+        font-size: 3rem;
+    }
+    
+    
 
 }
 
@@ -157,11 +174,18 @@ input:focus {
 
 
 html,body {
-    height:100%;
+
     min-height: 100%;
     background-image: url(/assets/gb1.jpg);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+
 }
 
 
+.profile-container {
+
+    background-color: rgba(199, 252, 252, 0.63);
+}
 
 

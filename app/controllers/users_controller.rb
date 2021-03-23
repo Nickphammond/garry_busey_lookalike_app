@@ -46,6 +46,8 @@ class UsersController < ApplicationController
 
         current_user.look_a_like.suburbs.delete(Suburb.find(params[:format]))
 
+        render "/user_profile_info"
+
 
     end
 
