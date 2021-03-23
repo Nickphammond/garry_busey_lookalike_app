@@ -1,15 +1,7 @@
+
+
+
 <% if @user.look_a_like != nil %>
-
-
-
-    <div class="m-20 p-10">
-    <% (0...@images.count).each do |img| %>
-        <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
-            <%= image_tag(@images[img], :class => "") %>
-        </div>
-
-    <% end %>
-    </div>
 
 
     <%= form_with(model: @user, local: true) do |user_form| %>
@@ -33,8 +25,8 @@
 
 
 
-                    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col justify-center ">
-                        <%= lookalike_form.text_field :bio %> 
+                    <div class="field">
+                        <%= lookalike_form.text_field :bio, class: "" %> 
                     </div>
 
                 </div>
@@ -106,14 +98,15 @@
 
 
 
-
-<%= link_to 'Suburb', new_suburb_path %>
-
-
-
+<div class="px-32 justify-center font-mono">
+<%= link_to 'Add A Suburb', new_suburb_path, class: "flex justify-center bg-purple-300" %>
+</div>
 
 
-<%= link_to 'Movies', movies_path %>
+
+<div class="p-32 font-mono">
+<%= link_to 'Movies', movies_path, class: "flex justify-center bg-purple-300" %>
+</div>
 
 
 

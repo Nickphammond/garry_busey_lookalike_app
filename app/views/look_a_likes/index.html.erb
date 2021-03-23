@@ -15,6 +15,8 @@
               <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
                 <%if look_a_like.user.image.attached? %>
                   <%= image_tag(look_a_like.user.image, :class => "") %>
+                <% else %>
+                  <div class="tile"></div>
                 <%end%>
               </div>
                 
@@ -41,6 +43,8 @@
               <div class="look_alike_pics overflow-hidden">
                 <%if look_a_like.user.image.attached? %>
                   <%= image_tag(look_a_like.user.image, :class => "pics") %>
+                <% else %>
+                  <div class="tile"></div>
                 <%end%>
               </div>
             </div>

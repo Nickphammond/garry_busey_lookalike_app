@@ -28,7 +28,8 @@
         background-color: orange;
         overflow-x: hidden; /* Disable horizontal scroll */
         padding-top: 20px;
-      }
+    }
+
 
 
       body {
@@ -56,13 +57,25 @@
     .sidenav {
         position: fixed;
         z-index: 100;
+        background-color: orange;
         width: 100%;
         height: 30%;
-        bottom: 0;
-        background-color: orange;
+        bottom: -25%;
         display: flex;
         justify-content: center;
     }
+
+    .sidenav:hover {
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+        height: 30%;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+
 
     input[type=text] {
         width: 500px;
@@ -108,7 +121,7 @@ input[type=text] {
     border: 1.5px solid lightgrey;
     border-radius: 0.25rem;
     background-color: plum;
-    
+    padding: 10px 5px; line-height: 28px;
 }
 
 input:focus {
@@ -173,12 +186,12 @@ input:focus {
 }
 
 
-html,body {
+html {
 
     min-height: 100%;
     background-image: url(/assets/gb1.jpg);
     background-repeat: no-repeat;
-    background-size: auto 100%;
+    background-size: 100%;
 
 }
 
@@ -189,3 +202,18 @@ html,body {
 }
 
 
+.tile {
+
+    background-color: lightslategray;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+.p {
+    display:block;
+    text-align: justify;
+}
+
+body {}

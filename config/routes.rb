@@ -20,18 +20,22 @@ Rails.application.routes.draw do
 
 
   get "/profile", to: "users#user_profile", as: "user_profile"
-
-  get "/profile/info", to: "users#user_profile_info", as: "user_profile_info"
   post "/profile/info", to: "users#update"
   patch "/profile/info", to: "users#update"
   put  "/profile/info", to: "users#update"
   get "/profile/info/edit", to: "users#edit_profile_info", as: "edit_profile_info"
 
-  get "/profile/lookalike", to: "users#user_profile_lookalike", as: "user_profile_lookalike"
+
+  get "/profile/lookalike", to: "users#user_look_a_like", as: "user_look_a_like"
+  get "/profie/loolalike/events", to: "users#user_look_a_like_events", as: "user_look_a_like_events"
   post "/profile/lookalike", to: "users#update"
   patch "/profile/lookalike", to: "users#update"
   put  "/profile/lookalike", to: "users#update"
-  get "/profile/lookalike/edit", to: "users#edit_lookalike", as: "edit_profile_lookalike"
+  get "/profile/lookalike/edit", to: "users#look_a_like_form", as: "look_a_like_form"
+
+
+
+
 
 
   get "/lookalikes", to: "look_a_likes#index"

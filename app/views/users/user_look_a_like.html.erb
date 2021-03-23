@@ -1,0 +1,72 @@
+
+
+
+
+
+
+<div class="my_look_a_like flex flex-col justify-center">
+        <% if @user.look_a_like != nil %>
+
+
+
+                <div class="m-20 p-10">
+                        <% (0...@images.count).each do |img| %>
+                                <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
+                                        <%= image_tag(@images[img], :class => "") %>
+                                </div>
+
+                        <% end %>
+                </div>
+
+
+                <div>
+                        <p class="mx-32 my-20"><%= @user.look_a_like.bio %></p>
+                </div>
+ 
+
+
+
+        <% else %>
+                <p>You are currently not an active look-a-like profile</p>
+
+                 <div class="flex px-10 pt-44 items-center font-sans overflow-hidden flex-col justify-center">
+                <%= form_with(model: @user, local: true) do |user_form| %>
+
+                        <%= user_form.hidden_field :first_name, value: @user.first_name %>  
+
+
+                                <%= user_form.fields_for :look_a_like, LookALike.new do |lookalike_form| %> 
+                                        <div class="field flex justify-center">
+                                                <%= lookalike_form.label "bio" %> 
+                                                <%= lookalike_form.text_field :bio %> 
+                                        </div>
+                                <% end %>
+
+
+                                <div class="actions">
+                                <%= user_form.submit %>
+                                </div>
+
+                        <% end %>
+
+                </div>
+    
+        <% end %>
+
+
+
+        
+        <div class="flex justify-center my-14 py-3 px-5 mx-auto h-full text-center font-mono bg-purple-100">
+                <%= link_to "Edit Look-a-Like Details", look_a_like_form_path(current_user) %>
+        </div>
+
+
+        <div class="flex justify-center my-14 py-3 px-5 mx-auto h-full text-center font-mono bg-purple-100">
+                <%= link_to "Go To My Look-a-Like Events", user_look_a_like_events_path(current_user)  %>
+        </div>
+</div>
+
+
+
+
+

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:user_profile, :user_profile_info, :edit_profile_info, :user_profile_lookalike, :edit_profile_lookalike, :update, :update_lookalike]
-    before_action :set_events, only: [:user_profile_lookalike, :user_profile_info]
-    before_action :set_look_a_like_images, only: [:user_profile_info]
+    before_action :set_user, only: [:user_profile, :user_look_a_like, :edit_profile_info, :user_look_a_like_events, :look_a_like_form, :user_profile_lookalike, :edit_profile_lookalike, :update, :update_lookalike]
+    before_action :set_events, only: [:user_profile_lookalike, :user_look_a_like, :user_look_a_like_events]
+    before_action :set_look_a_like_images, only: [:user_look_a_like, :look_a_like_form]
     before_action :authenticate_user!
 
     def user_profile
@@ -10,7 +10,10 @@ class UsersController < ApplicationController
 
 
 
-    def user_profile_info
+    def user_look_a_like
+    end
+
+    def user_look_a_like_events
     end
 
     def edit_profile_info
@@ -28,6 +31,10 @@ class UsersController < ApplicationController
     def edit_profile_lookalike
     end
 
+    def look_a_like_form
+
+    end
+
 
 
     
@@ -35,7 +42,7 @@ class UsersController < ApplicationController
         
 
         if @user.update(user_params)
-            redirect_to "/profile/info"
+            redirect_to "/profile"
         else
          render "/edit_profile_info", error: "Please try again"
         end
