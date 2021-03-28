@@ -1,55 +1,64 @@
 <%= form_with(model: @event, local: true) do |event_form| %>
-  <% if event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+  <div class="flex px-10 pt-44 items-center font-sans overflow-hidden flex-col">
 
-      <ul>
-        <% event.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="field">
-    <%= event_form.label :date %>
-    <%= event_form.date_select :date %>
-  </div>
-
-  <div class="field">
-    <%= event_form.label :time %>
-    <%= event_form.time_select :time %>
-  </div>
-
-  <%= event_form.fields_for :address do |address_form| %>
-  <div class="field">
-    <%= address_form.label :street_number %>
-    <%= address_form.text_field :street_number %>
-    <%= address_form.label :street_name %>
-    <%= address_form.text_field :street_name %>
-
-    <%= address_form.fields_for :suburb do |suburb_form| %>
-      <%= suburb_form.label :name %>
-      <%= suburb_form.text_field :name %>
-      <%= suburb_form.label :postcode %>
-      <%= suburb_form.text_field :postcode %>
+        <ul>
+          <% event.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
+
+
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
+      <%= event_form.label :date %>
+      <div>
+        <%= event_form.date_select :date %>
+      </div>
+    </div>
+
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
+      <%= event_form.label :time %>
+      <div>
+        <%= event_form.time_select :time %>
+      </div>
+    </div>
+
+    <%= event_form.fields_for :address do |address_form| %>
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
+      <%= address_form.label :street_number %>
+      <%= address_form.text_field :street_number %>
+      <%= address_form.label :street_name %>
+      <%= address_form.text_field :street_name %>
+
+      <%= address_form.fields_for :suburb do |suburb_form| %>
+        <%= suburb_form.label :name %>
+        <%= suburb_form.text_field :name %>
+        <%= suburb_form.label :postcode %>
+        <%= suburb_form.text_field :postcode %>
+      <% end %>
+    </div>
+    <% end %>
+
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
+      <%= event_form.label :price %>
+      <%= event_form.number_field :price %>
+    </div>
+
+    <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col">
+      <%= event_form.label :listed %>
+      <%= event_form.check_box :listed %>
+    </div>
+
   </div>
-  <% end %>
 
-  <div class="field">
-    <%= event_form.label :price %>
-    <%= event_form.number_field :price %>
-  </div>
+    <div class="actions">
+      <%= event_form.submit %>
+    </div>
 
-  <div class="field">
-    <%= event_form.label :listed %>
-    <%= event_form.check_box :listed %>
-  </div>
-
-</div>
-
-  <div class="actions">
-    <%= event_form.submit %>
   </div>
 <% end %>

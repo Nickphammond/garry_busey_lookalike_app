@@ -1,61 +1,87 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Event Details</h1>
 
-<p>
-  <strong>Date:</strong>
-  <%= @events_look_a_like.event.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @events_look_a_like.event.time %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @events_look_a_like.event.address.street_number + ' ' + @events_look_a_like.event.address.street_name + ' ' + @events_look_a_like.event.address.suburb.name + ' ' + @events_look_a_like.event.address.suburb.postcode.to_s %>
-</p>
+<div class="profile-container flex flex-col mx-20 my-52">
 
 
 
-<h1>LookALike Details</h1>
-
-<p>
-  <strong>First Name:</strong>
-  <%= @events_look_a_like.look_a_like.user.first_name %>
-</p>
-
-<p>
-  <strong>Last Name:</strong>
-  <%= @events_look_a_like.look_a_like.user.last_name %>
-</p>
-
-<td><%= link_to "Go to Look-a-Like's page", @events_look_a_like.event %></td>
+  <div class="flex px-16 pt-44 items-center overflow-hidden flex-col flex justify-center">
+    <div class="flex bg-gray-50 bg-opacity-100 w-full mb-12 items-center font-sans overflow-hidden flex-col flex justify-center font-mono">
 
 
 
 
+      <div class="card flex-col flex justify-center px-32 w-full font-mono my-10">
 
-<% if @events_look_a_like.look_a_like_accepted != true %>
+        <h1 class="text-2xl">Event Details</h1>
 
-  <% if @events_look_a_like.host_accepted != true %>
+        <div class="my-2 flex-col flex font-sans">
+          <strong>Date:</strong>
+          <%= @events_look_a_like.event.date %>
+        </div>
 
-    <td><%= link_to 'Respond To Expression of Interest', respond_interest_path(@events_look_a_like) %></td>
+        <div class="my-2 flex-col flex font-sans">
+          <strong>Time:</strong>
+          <%= @events_look_a_like.event.time %>
+        </div>
 
-  <% else %>
+        <div class="my-2 flex-col flex font-sans">
+          <strong>Address:</strong>
+          <%= @events_look_a_like.event.address.street_number + ' ' + @events_look_a_like.event.address.street_name + ' ' + @events_look_a_like.event.address.suburb.name + ' ' + @events_look_a_like.event.address.suburb.postcode.to_s %>
+        </div>
 
-    <td>Waiting for LookALike to confirm </td>
+      </div>
 
-  <% end %>
 
-<% else %>
 
-  <button class="buy-button p-3" data-stripe="payment">
-          <h4>Finalise Payment</h4>
-  </button>
+      <div class="card flex-col flex justify-center px-32 w-full my-10 font-mono">
 
-<% end %>
+        <h1 class="text-2xl">LookALike Details</h1>
+
+        <div class="my-2 flex-col flex font-sans">
+          <strong>First Name:</strong>
+          <%= @events_look_a_like.look_a_like.user.first_name %>
+        </div>
+
+        <div class="my-2 flex-col flex font-sans">
+          <strong>Last Name:</strong>
+          <%= @events_look_a_like.look_a_like.user.last_name %>
+        </div>
+
+        <div class="p-3 bg-yellow-200">
+        <td><%= link_to "Go to Look-a-Like's page", @events_look_a_like.event %></td>
+        </div>
+
+      </div>
+
+
+      <div class="bg-purple-200 p-5 m-5">
+        <% if @events_look_a_like.look_a_like_accepted != true %>
+
+          <% if @events_look_a_like.host_accepted != true %>
+
+            <td><%= link_to 'Respond To Expression of Interest', respond_interest_path(@events_look_a_like) %></td>
+
+          <% else %>
+
+            <td>Waiting for LookALike to confirm </td>
+
+          <% end %>
+
+        <% else %>
+
+          <button class="buy-button p-3" data-stripe="payment">
+                  <h4>Finalise Payment</h4>
+          </button>
+
+        <% end %>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
 
         
 <script src="https://js.stripe.com/v3/"></script>

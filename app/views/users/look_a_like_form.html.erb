@@ -6,7 +6,7 @@
 
     <%= form_with(model: @user, local: true) do |user_form| %>
 
-        <div class="actions flex flex-col justify-center pb-40 pt-20">
+        <div class="actions flex flex-col justify-center pb-40 pt-20 font-mono">
 
             <%= user_form.fields_for :look_a_like do |lookalike_form| %>
 
@@ -14,8 +14,8 @@
 
                 
                     <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col justify-center ">
-                        <label class="">
-                            Add image
+                        <label class="rounded-full py-3 px-6 bg-yellow-200 hover:bg-red-300 font-mono">
+                            Select images
                             <span style="display:none;">
                                 <%= lookalike_form.file_field :images, multiple: true %>
                             </span>
@@ -52,15 +52,15 @@
 
 
 
-    <div class="m-12">
-        <h2 class="flex justifyer-cent">Suburbs</h2>
+    <div class="m-32 bg-gray-200">
+        <h2 class="flex justify-center font-mono p-6 bg-yellow-200">Suburbs</h2>
 
         <div class="overflow-x-auto">
             
-            <div class="min-w-screen bg-gray-100 flex items-center justify-center overscroll-auto font-sans overflow-hidden">
+            <div class="bg-gray-100 py-4 flex items-center justify-center overscroll-auto font-sans overflow-hidden">
                 
 
-                <table class="min-w-max w-full table-auto">
+                <table class="min-w-max w-full table-auto mx-1">
 
                     <thead>
                         <tr class="bg-green-200 text-green-600 text-sm">
@@ -77,9 +77,9 @@
                             <% @user.look_a_like.suburbs.each do |suburb| %>
 
                                 <tr>
-                                    <td class="m-12"><%= suburb.name %></td>
-                                    <td class="m-9"><%= suburb.postcode %></td>
-                                    <td class="m-9"><%= link_to 'Remove Suburb', remove_suburb_path(suburb) %></td>
+                                    <td class="m-12 px-4"><%= suburb.name %></td>
+                                    <td class="m-9 px-4"><%= suburb.postcode %></td>
+                                    <td class="px-4"><%= link_to 'Remove Suburb', remove_suburb_path(suburb) %></td>
                                 </tr>
 
 
@@ -92,15 +92,13 @@
                 </table>
             </div>
         </div>
+
+        <div class="py-1 justify-center font-mono">
+            <%= link_to 'Add A Suburb', new_suburb_path, class: "flex justify-center bg-purple-300" %>
+        </div>
     </div>
 
 
-
-
-
-<div class="px-32 justify-center font-mono">
-<%= link_to 'Add A Suburb', new_suburb_path, class: "flex justify-center bg-purple-300" %>
-</div>
 
 
 

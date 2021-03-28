@@ -7,7 +7,7 @@
 
 
     <% @look_a_likes.each do |look_a_like| %>
-      <div class="flex justify-center">
+      <div class="flex justify-center font-mono">
 
         <div class="look-alike-card rounded overflow-hidden border bg-white">
           <div class="w-full flex justify-between h-full px-3 pt-3">
@@ -36,21 +36,33 @@
 
               <p><%= link_to name, look_a_like %></p>
 
-              <div class="look-alike-bio">
-                <p><%= look_a_like.bio %></p>
+              <div class="look-alike-bio break-all">
+                <p class="break-all"><%= look_a_like.bio %></p>
               </div>
 
-              <div class="look_alike_pics overflow-hidden">
-                <%if look_a_like.user.image.attached? %>
-                  <%= image_tag(look_a_like.user.image, :class => "pics") %>
+              <div class="look_alike_pics flex-col flex overflow-auto">
+                <%if look_a_like.images.attached? %>
+                  <div class="empty tile">
+                
+                    <% look_a_like.images.each do |item| %>
+                      <div class="h-full">
+                        <%= link_to image_tag(item, class:"w-full h-screen"), look_a_like %>
+                      </div>
+                    <% end %>
+                  </div>
                 <% else %>
-                  <div class="tile"></div>
+
+                  <%= link_to '', look_a_like, class:"tile" %>
+
                 <%end%>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+
     <% end %>
 
 

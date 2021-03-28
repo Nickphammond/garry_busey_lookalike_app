@@ -1,141 +1,180 @@
 
 
 
-<% if @event.user.first_name != nil && @event.user.first_name != nil %>
-  <p>
-    <strong>Host Name:</strong>
-    <%= @event.user.first_name + ' ' + @event.user.first_name%>
-  </p>
-<% else %>
-  <p>
-    <strong>User has not set name</strong>
-  </p>
-<% end %>
+<div class="profile-container flex flex-col mx-24">
+  <div class="flex px-16 pt-44 items-center font-sans overflow-hidden flex-col flex ">
+    <div class="flex bg-gray-50 bg-opacity-100 w-full mb-12 p-5 font-sans overflow-hidden flex-col flex">
 
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.date %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @event.time %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @event.address.street_number + ' ' + @event.address.street_name + ' ' + @event.address.suburb.name + ' ' + @event.address.suburb.postcode.to_s %>
-</p>
-
-
-<p>
-  <strong>Payment:</strong>
-  <% if @event.price != nil %>
-    <%= @event.price.to_s + '.00 AUD' %>
-  <% else %>
-    <%= '.50 AUD' %>
-  <% end %>
-</p>
-
-
-
-
-<% if @event.user != current_user %>
-
-
-  <% if current_user.look_a_like != nil %>
-
-
-    <% if @included %>
-
-      <% userll = current_user.look_a_like.events_look_a_likes %>
-      <% ans = userll[0] %>
-      <% for item in userll %>
-        <% if item.event == @event %>
-          <% ans = item %>
-        <% end %>
+      <% if @event.user.first_name != nil && @event.user.first_name != nil %>
+        <p class="my-4">
+          <strong>Host Name:</strong>
+          <%= @event.user.first_name + ' ' + @event.user.first_name%>
+        </p>
+      <% else %>
+        <p class="my-4">
+          <strong>User has not set name</strong>
+        </p>
       <% end %>
-      
-      <% if ans.host_accepted == true%>
-        <% if ans.host_accepted == true%>
 
-          <p>You will receive payment soon!<p>
+
+      <div class="my-2 flex-col flex font-mono">
+        <strong>Date:</strong>
+        <%= @event.date %>
+      </div>
+
+      <p class="my-4">
+        <strong>Time:</strong>
+        <%= @event.time %>
+      </p>
+
+      <p class="my-4">
+        <strong>Address:</strong>
+        <%= @event.address.street_number + ' ' + @event.address.street_name + ' ' + @event.address.suburb.name + ' ' + @event.address.suburb.postcode.to_s %>
+      </p>
+
+
+      <p class="my-4">
+        <strong>Payment:</strong>
+        <% if @event.price != nil %>
+          <%= @event.price.to_s + '.00 AUD' %>
+        <% else %>
+          <%= '.50 AUD' %>
+        <% end %>
+      </p>
+
+    </div>
+
+
+
+
+      <% if @event.user != current_user %>
+
+
+        <% if current_user.look_a_like != nil %>
+
+
+          <% if @included %>
+
+            <% userll = current_user.look_a_like.events_look_a_likes %>
+            <% ans = userll[0] %>
+            <% for item in userll %>
+              <% if item.event == @event %>
+                <% ans = item %>
+              <% end %>
+            <% end %>
+            
+            <% if ans.host_accepted == true%>
+              <% if ans.host_accepted == true%>
+
+                <p class="my-4">You will receive payment soon!<p>
+
+              <% else %>
+
+                <p class="my-4"> The host has accepted your expression of interest <p>
+
+                <p class="my-4">Would you like to confirm your interest?<p>
+
+                <%= link_to 'Confirm Expression of Interest', respond_interest_path(@intersection) %>
+
+              <% end %>
+
+            <% else %>
+
+              <p class="my-4"> You have sent expression of interest </p>
+
+
+          
+
+              link_to 'Select a movie', select_movie_path()
+
+
+
+            <% end %>
+
+          <% else %>
+
+
+
+            <p class="my-4">You can send an expression of interest<p>
+
+
+
+            <%= link_to 'Send Expression of Interest', submit_interest_path(@event) %>
+
+
+      
+
+
+
+          <% end %>
 
         <% else %>
-
-          <p> The host has accepted your expression of interest <p>
-
-          <p>Would you like to confirm your interest?<p>
-
-          <%= link_to 'Confirm Expression of Interest', respond_interest_path(@intersection) %>
-
         <% end %>
 
       <% else %>
 
-        <p> You have sent expression of interest </p>
+        <p class="my-4">This is one of your events </p>
 
 
-    
 
-        link_to 'Select a movie', select_movie_path()
+        <div class="border-dotted border-2 w-full">
+          <table class="min-w-max w-full table-auto font-mono">
+          <p>LookALikes</p>
+          <% @event.events_look_a_likes.each do |events_look_a_like| %> 
+
+              <tr class="flex flex-col bg-gray-100 p-2">
+
+                <td class="flex flex-row justify-between my-2 bg-gray-200">
+                  <div class="flex flex-row justify-between w-full">
+                    <div class="w-full flex justify-between bg-green-200 items-center m-2">
+                      <%= events_look_a_like.look_a_like.user.first_name%>
+                    </div>
+
+                    <div class="w-full flex justify-between bg-green-200 items-center m-2">
+                      <%=events_look_a_like.look_a_like.user.last_name%>
+                    </div> 
+                  </div>
+
+                  <div class="">
+                    <%= link_to 'Show Look-a-Like', events_look_a_like.look_a_like %>
+                  </div> 
+                </td>
+
+                
+
+                <td class="flex flex-row justify-between my-2">
+                  <% if events_look_a_like.look_a_like_accepted != true %>
+                    <p> LookALike Has Shown Interest</p>
+                  <% else %>
+                    <p> LookALike Confirmed Interest</p>
+                  <% end %>
+
+                  <div class=""><%= link_to 'Show', events_look_a_like %></div>
+                </td>
+
+              </tr>
+
+          <% end %>
+
+          </table>
+
+        </div>
 
 
+
+        <br>
+        <br>
+        <%= link_to 'Edit', edit_event_path(@event) %> 
 
       <% end %>
 
-    <% else %>
+      <%= link_to 'Back', events_path %>
 
 
 
-      <p>You can send an expression of interest<p>
 
 
 
-      <%= link_to 'Send Expression of Interest', submit_interest_path(@event) %>
-
-
- 
-
-
-
-    <% end %>
-
-  <% else %>
-  <% end %>
-
-<% else %>
-
-  <p>This is one of your events </p>
-
-
-
-    <% @event.events_look_a_likes.each do |events_look_a_like| %> 
-
-      <tr>
-        <td><%= events_look_a_like.look_a_like.user.id %></td>
-
-        <td><%= events_look_a_like.look_a_like.user.first_name %></td>
-        <td><%= events_look_a_like.look_a_like.user.last_name %></td>
-        <td><%= link_to 'Show Look-a-Like', events_look_a_like.look_a_like %></td>
-        <td><%= link_to 'Show', events_look_a_like %></td>
-
-        <% if events_look_a_like.look_a_like_accepted != true %>
-          <p> LookALike Showed Interest</p>
-        <% else %>
-          <p> LookALike Confirmed Interest</p>
-        <% end %>
-      </tr>
-
-    <% end %>
-
-
-
-  <br>
-  <br>
-  <%= link_to 'Edit', edit_event_path(@event) %> 
-
-<% end %>
-
-<%= link_to 'Back', events_path %>
+  </div>
+</div>

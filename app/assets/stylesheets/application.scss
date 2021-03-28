@@ -109,7 +109,6 @@
         font-size: 3rem;
     }
     
-    
 
 }
 
@@ -152,6 +151,12 @@ input:focus {
 }
 
 
+
+
+.empty {
+    height: 500px;
+    width: 450px;
+}
 
 .look-alike-card {
     height: 600px;
@@ -211,9 +216,3 @@ html {
 
 
 
-.p {
-    display:block;
-    text-align: justify;
-}
-
-body {}

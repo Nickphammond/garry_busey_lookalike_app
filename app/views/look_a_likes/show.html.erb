@@ -2,36 +2,76 @@
 
 
 
-<div class="card" style="width: 18rem;">
-<p class="text-cyan-600">
-  <strong>First name:</strong>
-  <%= @look_a_like.user.first_name %>
-</p>
-
-<p>
-  <strong class="text-amber">Last name:</strong>
-  <%= @look_a_like.user.last_name %>
-</p>
+<div class="profile-container flex flex-col mx-20 my-52">
 
 
 
-<p>
-  <strong class="text-amber">Bio:</strong>
-  <%= @look_a_like.bio %>
-</p>
+  <div class="flex px-16 pt-44 items-center font-sans overflow-hidden flex-col flex justify-center">
+  <div class="flex bg-gray-50 bg-opacity-100 w-full mb-12 items-center font-sans overflow-hidden flex-col flex justify-center">
 
-</div>
+  <div class="card flex-col flex justify-center px-32">
 
+    <div class="my-2 flex-col flex font-mono">
+      <strong>First name</strong>
+      <%= @look_a_like.user.first_name %>
+    </div>
+ 
 
-
-<div class="m-20 p-10">
-    <% (0...@images.count).each do |img| %>
-        <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
-            <%= image_tag(@images[img], :class => "") %>
-        </div>
-
-    <% end %>
+ 
+    <div class="my-2 flex-col flex font-mono">
+      <strong>Last name</strong>
+      <%= @look_a_like.user.last_name %>
     </div>
 
 
-<%= link_to 'Back', look_a_likes_path %>
+
+
+    <div class="my-2 flex-col flex font-mono">
+      <strong class="text-amber">Bio</strong>
+      <p class="break-all">
+        <%= @look_a_like.bio %>
+      </p>
+    </div>
+
+
+
+
+
+
+
+
+    <strong>Suburbs</strong>
+    <div>
+      <% @suburbs.each do |item| %>
+        <%=item.name%>
+      <% end %>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="m-20 p-10">
+      <% (0...@images.count).each do |img| %>
+          <div class="square overflow-hidden rounded-lg shadow-lg flex justify-center">
+              <%= image_tag(@images[img], :class => "") %>
+          </div>
+
+      <% end %>
+      </div>
+
+
+  <%= link_to 'Back', look_a_likes_path %>
+
+
+  </div>
+  </div>
+</div>

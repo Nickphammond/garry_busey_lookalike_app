@@ -4,8 +4,8 @@
 
 
 
-<div class="my_look_a_like flex flex-col justify-center">
-        <% if @user.look_a_like != nil %>
+<div class="my_look_a_like flex flex-col justify-center font-mono">
+        <% if @look_a_like != nil %>
 
 
 
@@ -19,8 +19,24 @@
                 </div>
 
 
-                <div>
-                        <p class="mx-32 my-20"><%= @user.look_a_like.bio %></p>
+                <div class="mx-32 my-20 ">
+                        <strong>Bio</strong>
+                        <p class="break-all"><%= @look_a_like.bio %></p>
+                </div>
+
+
+
+
+
+                <div class="mx-32 my-20 ">
+                        <strong>Available For The Following Locations</strong>
+                        <div class="bg-purple-200 p-2">
+                        <% @look_a_like.suburbs.each do |item| %>
+                                <div class="bg-purple-100 m-1">
+                                        <p class="my-4 break-all"><%= item.name + " " + item.postcode.to_s %></p>
+                                </div>
+                        <% end %>
+                        </div>
                 </div>
  
 

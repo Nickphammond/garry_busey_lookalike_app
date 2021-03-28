@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: "Event was successfully created." }
+        format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.update(event_params)
 
-        format.html { redirect_to @event, notice: "Event was successfully updated." }
+        format.html { redirect_to @event }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -72,7 +72,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to events_url }
       format.json { head :no_content }
     end
   end
@@ -84,7 +84,7 @@ class EventsController < ApplicationController
 
     state = true
     @event.look_a_likes.each do |item|
-      puts "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      
       if item.user.id == current_user.id
         state = false
 

@@ -48,6 +48,8 @@ class LookALikesController < ApplicationController
     end
   end
 
+
+
   # DELETE /look_a_likes/1 or /look_a_likes/1.json
   def destroy
     @look_a_like.destroy
@@ -62,6 +64,7 @@ class LookALikesController < ApplicationController
     def set_look_a_like
       @look_a_like = LookALike.find(params[:id])
       @images = @look_a_like.images
+      @suburbs = @look_a_like.suburbs
     end
 
     

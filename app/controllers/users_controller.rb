@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:user_profile, :user_look_a_like, :edit_profile_info, :user_look_a_like_events, :look_a_like_form, :user_profile_lookalike, :edit_profile_lookalike, :update, :update_lookalike]
+    before_action :set_user
     before_action :set_events, only: [:user_profile_lookalike, :user_look_a_like, :user_look_a_like_events]
-    before_action :set_look_a_like_images, only: [:user_look_a_like, :look_a_like_form]
+    before_action :set_look_a_like, only: [:user_look_a_like, :remove_suburb]
+    before_action :set_look_a_like_images, only: [:user_look_a_like, :look_a_like_form, :remove_suburb]
     before_action :authenticate_user!
 
     def user_profile
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
     end
 
     def edit_profile_info
+        render "info_form"
     end
 
 
@@ -32,7 +34,6 @@ class UsersController < ApplicationController
     end
 
     def look_a_like_form
-
     end
 
 
@@ -53,7 +54,8 @@ class UsersController < ApplicationController
 
         current_user.look_a_like.suburbs.delete(Suburb.find(params[:format]))
 
-        render "/user_profile_info"
+        render "user_look_a_like"
+        
 
 
     end
@@ -69,9 +71,13 @@ class UsersController < ApplicationController
     end
 
 
-
     def set_events
         @events = Event.all
+    end
+
+
+    def set_look_a_like
+        @look_a_like = @user.look_a_like
     end
 
 

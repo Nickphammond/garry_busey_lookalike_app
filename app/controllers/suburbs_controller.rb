@@ -18,8 +18,8 @@ class SuburbsController < ApplicationController
     
         respond_to do |format|
             if @suburb.save
-            format.html { redirect_to @suburb, notice: "Event was successfully created." }
-            format.json { render :show, status: :created, location: @suburb }
+            format.html { redirect_to "/profile"}
+      
             else
             format.html { render :new, status: :unprocessable_entity }
             format.json { render json: @suburb.errors, status: :unprocessable_entity }
