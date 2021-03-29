@@ -4,8 +4,7 @@ class EventsController < ApplicationController
   before_action :set_events_look_a_like, only: [:show]
   before_action :authenticate_user!, only: [:edit, :update, :destroy, :show]
 
-
-  before_action :set_movies, only: [:select_movie]
+  before_action :set_movies, only: [:select_movie, :update, :new]
 
   require 'uri'
   require 'net/http'
@@ -41,6 +40,27 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
+
+    params[:movies].each do |item1|
+      a = nil
+      i = 0
+      list = Movie.all
+      while a == nil && i<(list).length-1
+        if item1 == list[i].title
+          a = list[i]
+        end
+        i = i + 1
+      end
+
+      if a == nil
+        movie = Movie.create(title: item1)
+      else
+        movie = a
+      end
+
+      @event.movies.append(movie)
+    end
+
 
     respond_to do |format|
       if @event.save
@@ -84,7 +104,7 @@ class EventsController < ApplicationController
 
     state = true
     @event.look_a_likes.each do |item|
-      
+
       if item.user.id == current_user.id
         state = false
 
@@ -162,7 +182,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:date, :time, :price, :user_id, :listed, look_a_likes: [], address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
+      params.require(:event).permit(:date, :time, :price, :user_id, :listed, look_a_likes: [], movies: [], address_attributes: [:street_number, :street_name, suburb_attributes: [:name, :postcode]])
     end
 
 

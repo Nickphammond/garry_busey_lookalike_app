@@ -1,1 +1,1 @@
-# AUTH_DETAILS = YAML.load_file("#{Rails.root}/config/local_env.yml")
+AUTH_DETAILS = YAML.load_file("#{Rails.root}/config/local_env.yml")

@@ -6,11 +6,11 @@
 
     <%= form_with(model: @user, local: true) do |user_form| %>
 
-        <div class="actions flex flex-col justify-center pb-40 pt-20 font-mono">
+        <div class="actions flex flex-col justify-center pb-40 pt-20 font-mono mx-32">
 
             <%= user_form.fields_for :look_a_like do |lookalike_form| %>
 
-                <div class="flex items-center font-sans overflow-hidden flex-col">
+                <div class="flex items-center font-sans overflow-hidden flex-col bg-gray-100">
 
                 
                     <div class="field sm:p-10 flex items-left font-sans overflow-hidden flex-col justify-center ">
@@ -24,9 +24,11 @@
 
 
 
-
-                    <div class="field">
-                        <%= lookalike_form.text_field :bio, class: "" %> 
+                    <div class="justify-center flex flex-col bg-green-100 m-5">
+                        <h2 class="justify-center flex font-mono">Write Bio</h2>
+                        <div class="field m-3">
+                            <%= lookalike_form.text_field :bio, class: "" %> 
+                        </div>
                     </div>
 
                 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_074642) do
+ActiveRecord::Schema.define(version: 2021_03_28_152616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2021_03_21_074642) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "movies_events", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_movies_events_on_event_id"
+    t.index ["movie_id"], name: "index_movies_events_on_movie_id"
+  end
+
   create_table "suburbs", force: :cascade do |t|
     t.string "name"
     t.integer "postcode"
@@ -140,6 +149,8 @@ ActiveRecord::Schema.define(version: 2021_03_21_074642) do
   add_foreign_key "events_look_a_likes", "look_a_likes"
   add_foreign_key "events_look_a_likes", "movies"
   add_foreign_key "look_a_likes", "images"
+  add_foreign_key "movies_events", "events"
+  add_foreign_key "movies_events", "movies"
   add_foreign_key "suburbs_look_a_likes", "look_a_likes"
   add_foreign_key "suburbs_look_a_likes", "suburbs"
   add_foreign_key "users", "addresses"
